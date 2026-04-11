@@ -1,0 +1,1381 @@
+<!DOCTYPE html> 
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programa Hipertrofia · 50 anos · Coluna Adaptada</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0e8;
+    --bg2: #ede7d9;
+    --surface: #ffffff;
+    --surface2: #faf7f2;
+    --border: #d4c9b5;
+    --border2: #c4b89f;
+    --ink: #1a1410;
+    --ink2: #3d3328;
+    --muted: #7a6e60;
+    --accent: #8b3a1a;
+    --accent2: #2a5c3f;
+    --accent3: #1a3a5c;
+    --warn: #8b3a1a;
+    --day-a: #8b3a1a;
+    --day-b: #2a5c3f;
+    --day-c: #1a3a5c;
+    --caution: #7a5c1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Subtle paper texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(0,0,0,0.012) 28px, rgba(0,0,0,0.012) 29px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 52px 0 40px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 44px;
+  }
+
+  .label-eyebrow {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .label-eyebrow::before {
+    content: '▪';
+    color: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 7vw, 72px);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .header-sub {
+    margin-top: 16px;
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  .header-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .chip {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid var(--border2);
+    background: var(--surface);
+    color: var(--muted);
+    padding: 5px 12px;
+    border-radius: 1px;
+  }
+
+  .chip.accent { border-color: var(--accent); color: var(--accent); }
+  .chip.green { border-color: var(--accent2); color: var(--accent2); }
+  .chip.blue { border-color: var(--accent3); color: var(--accent3); }
+
+  /* ── MEDICAL ALERT ── */
+  .medical-alert {
+    background: #fff8f0;
+    border: 1px solid #d4a070;
+    border-left: 4px solid var(--accent);
+    padding: 20px 24px;
+    margin-bottom: 36px;
+    border-radius: 2px;
+  }
+
+  .medical-alert .alert-title {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .medical-alert p {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.7;
+  }
+
+  .medical-alert strong { color: var(--ink); }
+
+  /* ── SCIENCE BOX ── */
+  .science-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    margin-bottom: 44px;
+    border-radius: 2px;
+  }
+
+  .science-box .box-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .science-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .sci-item {
+    border-left: 2px solid var(--border2);
+    padding-left: 14px;
+  }
+
+  .sci-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+
+  .sci-label {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink2);
+    margin-top: 2px;
+  }
+
+  .sci-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ── WEEK BAR ── */
+  .week-section {
+    margin-bottom: 44px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border2);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .section-tag {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .section-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    margin-top: 6px;
+  }
+
+  .week-bar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+
+  .week-day {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px 6px;
+    text-align: center;
+    border-radius: 2px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+
+  .week-day .wday { display: block; font-weight: 500; margin-bottom: 4px; font-size: 10px; }
+  .week-day .wlabel { font-size: 8px; opacity: 0.8; line-height: 1.3; }
+
+  .week-day.a { border-color: var(--day-a); color: var(--day-a); background: rgba(139,58,26,0.05); }
+  .week-day.b { border-color: var(--day-b); color: var(--day-b); background: rgba(42,92,63,0.05); }
+  .week-day.c { border-color: var(--day-c); color: var(--day-c); background: rgba(26,58,92,0.05); }
+
+  .schedule-note {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+  }
+
+  /* ── DAY CARDS ── */
+  .day-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  .day-header {
+    padding: 22px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .day-header.ha { border-top: 4px solid var(--day-a); }
+  .day-header.hb { border-top: 4px solid var(--day-b); }
+  .day-header.hc { border-top: 4px solid var(--day-c); }
+
+  .day-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1;
+    min-width: 44px;
+  }
+
+  .ha .day-letter { color: var(--day-a); }
+  .hb .day-letter { color: var(--day-b); }
+  .hc .day-letter { color: var(--day-c); }
+
+  .day-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .day-meta {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .day-right {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .day-stat {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .day-stat strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0;
+  }
+
+  /* ── EXERCISE TABLE ── */
+  .ex-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .ex-table thead tr {
+    background: var(--bg2);
+  }
+
+  .ex-table th {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 9px 16px;
+    text-align: left;
+    font-weight: 400;
+  }
+
+  .ex-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--bg2);
+    vertical-align: top;
+  }
+
+  .ex-table tr:last-child td { border-bottom: none; }
+  .ex-table tr:hover td { background: var(--surface2); }
+
+  .ex-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .ex-note {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .ex-avoid {
+    font-size: 11px;
+    color: var(--warn);
+    margin-top: 4px;
+    line-height: 1.5;
+    display: flex;
+    gap: 5px;
+    align-items: flex-start;
+  }
+
+  .sets-reps {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12px;
+    color: var(--ink2);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .rir-b {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 3px 7px;
+    border-radius: 1px;
+    white-space: nowrap;
+    color: var(--muted);
+  }
+
+  .rest-b {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .mtag {
+    display: inline-block;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid;
+    padding: 2px 6px;
+    border-radius: 1px;
+    margin-right: 3px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+  }
+
+  .t-chest { color: #8b3a1a; border-color: rgba(139,58,26,0.4); }
+  .t-tric { color: #6b4a1a; border-color: rgba(107,74,26,0.4); }
+  .t-delt { color: #6b1a5c; border-color: rgba(107,26,92,0.4); }
+  .t-back { color: #1a5c6b; border-color: rgba(26,92,107,0.4); }
+  .t-bic { color: #1a6b4a; border-color: rgba(26,107,74,0.4); }
+  .t-legs { color: #2a5c3f; border-color: rgba(42,92,63,0.4); }
+  .t-core { color: #4a3a6b; border-color: rgba(74,58,107,0.4); }
+  .t-glutes { color: #6b2a4a; border-color: rgba(107,42,74,0.4); }
+  .t-calves { color: #2a4a6b; border-color: rgba(42,74,107,0.4); }
+  .t-erect { color: #5c4a1a; border-color: rgba(92,74,26,0.4); }
+
+  /* ── CAUTION ROW ── */
+  .caution-row td {
+    background: rgba(139,58,26,0.03) !important;
+  }
+
+  /* ── COLUNA SECTION ── */
+  .spine-box {
+    background: #f0f7f4;
+    border: 1px solid #a0c8b8;
+    border-left: 4px solid var(--accent2);
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    border-radius: 2px;
+  }
+
+  .spine-box .box-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--accent2);
+    margin-bottom: 16px;
+  }
+
+  .spine-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .spine-col h4 {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #a0c8b8;
+  }
+
+  .spine-col ul {
+    padding-left: 16px;
+  }
+
+  .spine-col ul li {
+    font-size: 12.5px;
+    color: var(--ink2);
+    line-height: 1.7;
+    margin-bottom: 2px;
+  }
+
+  .spine-col ul li strong { color: var(--ink); }
+
+  /* ── AGE BOX ── */
+  .age-box {
+    background: #f0f4f7;
+    border: 1px solid #a0b8c8;
+    border-left: 4px solid var(--accent3);
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    border-radius: 2px;
+  }
+
+  .age-box .box-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--accent3);
+    margin-bottom: 16px;
+  }
+
+  .age-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .age-item {
+    border-left: 2px solid #a0b8c8;
+    padding-left: 14px;
+  }
+
+  .age-item h5 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent3);
+    margin-bottom: 4px;
+  }
+
+  .age-item p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── PROTOCOLS ── */
+  .protocol-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .proto-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 22px;
+    border-radius: 2px;
+  }
+
+  .proto-card h4 {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .proto-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .proto-card p strong { color: var(--ink2); }
+
+  /* ── CARDIO ── */
+  .cardio-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent3);
+    padding: 22px 26px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+
+  .cardio-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--accent3);
+    margin-bottom: 10px;
+  }
+
+  .cardio-card p, .cardio-card li {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .cardio-card ul { padding-left: 16px; margin-top: 8px; }
+  .cardio-card li strong { color: var(--ink2); }
+
+  /* ── PROGRESSION TABLE ── */
+  .prog-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .prog-table th {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 400;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .prog-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--bg2);
+    font-size: 12.5px;
+    color: var(--muted);
+    vertical-align: top;
+  }
+
+  .prog-table tr:last-child td { border-bottom: none; }
+
+  .prog-table td:first-child {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    color: var(--ink2);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .prog-table td:nth-child(2) {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ── ALERT BOX ── */
+  .alert-box {
+    background: #fff8f0;
+    border: 1px solid #d4a070;
+    border-left: 4px solid var(--accent);
+    padding: 18px 22px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .alert-box strong { color: var(--accent); }
+
+  /* ── FORBIDDEN ── */
+  .forbidden-box {
+    background: #fff0f0;
+    border: 1px solid #d4a0a0;
+    border-left: 4px solid #c0392b;
+    padding: 20px 24px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+  }
+
+  .forbidden-box .fb-title {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c0392b;
+    margin-bottom: 12px;
+  }
+
+  .forbidden-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+  }
+
+  .forb-item {
+    font-size: 12.5px;
+    color: #7a3030;
+    display: flex;
+    gap: 6px;
+    align-items: baseline;
+    line-height: 1.5;
+  }
+
+  .forb-item::before {
+    content: '✕';
+    color: #c0392b;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  /* ── MOBILIDADE ── */
+  .mob-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+
+  .mob-card h4 {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 10px;
+  }
+
+  .mob-card p, .mob-card li {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .mob-card ul { padding-left: 16px; margin-top: 6px; }
+  .mob-card li strong { color: var(--ink2); }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border2);
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .mb-20 { margin-bottom: 20px; }
+  .mb-32 { margin-bottom: 32px; }
+  .mb-44 { margin-bottom: 44px; }
+
+  @media (max-width: 600px) {
+    .spine-grid { grid-template-columns: 1fr; }
+    .day-right { display: none; }
+    .ex-table th:nth-child(4),
+    .ex-table td:nth-child(4) { display: none; }
+    h1 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="label-eyebrow">Protocolo de Hipertrofia · Adaptado · 2025</div>
+    <h1>Força & Músculo<br>aos <em>50 anos</em></h1>
+    <p class="header-sub">Programa evidência-based com adaptações específicas para lordose lumbar, escoliose e considerações hormonais e musculoesqueléticas da faixa etária masculina acima dos 50.</p>
+    <div class="header-chips">
+      <span class="chip accent">3× por semana</span>
+      <span class="chip">~55 min/sessão</span>
+      <span class="chip green">Coluna adaptada</span>
+      <span class="chip blue">50+ masculino</span>
+      <span class="chip">Push / Pull / Legs</span>
+      <span class="chip">10–14 séries/músculo/semana</span>
+    </div>
+  </header>
+
+  <!-- AVISO MÉDICO -->
+  <div class="medical-alert">
+    <div class="alert-title">⚠ Aviso Médico Importante</div>
+    <p>Este programa foi adaptado com base em guidelines gerais para lordose e escoliose. <strong>Não substitui avaliação por fisiatra, ortopedista ou fisioterapeuta.</strong> Antes de iniciar, consulte um profissional que avalie a severidade da sua curvatura, a presença de compressão radicular, e quais movimentos são contraindicados no seu caso específico. Escoliose com ângulo de Cobb &gt;30° pode requerer adaptações adicionais. A progressão de carga deve ser supervisionada por educador físico certificado, preferencialmente com experiência em reabilitação.</p>
+  </div>
+
+  <!-- CIÊNCIA BASE -->
+  <div class="science-box mb-44">
+    <div class="box-title">Base Científica — 50+ Masculino</div>
+    <div class="science-grid">
+      <div class="sci-item">
+        <div class="sci-val">~1%/ano</div>
+        <div class="sci-label">Perda de massa muscular</div>
+        <div class="sci-desc">A partir dos 50, sarcopenia acelera. Treino de força é a intervenção mais eficaz para reverter esta tendência (Peterson et al. 2011; meta-análise 2022).</div>
+      </div>
+      <div class="sci-item">
+        <div class="sci-val">RIR 2–3</div>
+        <div class="sci-label">Intensidade recomendada</div>
+        <div class="sci-desc">Homens acima dos 50 beneficiam de treinar mais afastados da falha — menor risco de lesão tendinosa e articular, sem perda significativa de hipertrofia (Steele et al. 2023).</div>
+      </div>
+      <div class="sci-item">
+        <div class="sci-val">48–72h</div>
+        <div class="sci-label">Recuperação entre sessões</div>
+        <div class="sci-desc">A síntese proteica muscular pós-exercício dura mais tempo em adultos mais velhos mas a recuperação sistémica é mais lenta. Justifica 3× semana com descanso distribuído.</div>
+      </div>
+      <div class="sci-item">
+        <div class="sci-val">2.0–2.2g</div>
+        <div class="sci-label">Proteína por kg/dia</div>
+        <div class="sci-desc">Adultos mais velhos têm resistência anabólica — necessitam de doses proteicas mais elevadas por refeição (~40g) para maximizar síntese muscular (Moore et al. 2015).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLUNA - ADAPTAÇÕES -->
+  <div class="spine-box mb-32">
+    <div class="box-title">Adaptações para Lordose e Escoliose</div>
+    <div class="spine-grid">
+      <div class="spine-col">
+        <h4>✓ Princípios Aplicados</h4>
+        <ul>
+          <li><strong>Neutro espinal em todos os exercícios</strong> — nenhum movimento que force flexão ou extensão excessiva da coluna lombar sob carga</li>
+          <li><strong>Fortalecimento do core anti-rotação</strong> — estabilizadores que protegem a escoliose</li>
+          <li><strong>Isquiotibiais e glúteos prioritários</strong> — reduzem tensão anterior na lordose</li>
+          <li><strong>Eliminação de carga axial compressiva pesada</strong> — sem agachamento olímpico ou peso morto pesado</li>
+          <li><strong>Suporte lombar em todos os exercícios sentados</strong></li>
+          <li><strong>Assimetrias musculares</strong> — escoliose frequentemente cria desequilíbrios; exercícios unilaterais compensam</li>
+        </ul>
+      </div>
+      <div class="spine-col">
+        <h4>✕ Exercícios Contraindicados</h4>
+        <ul>
+          <li><strong>Peso morto convencional pesado</strong> — carga axial + flexão lombar</li>
+          <li><strong>Agachamento com barra nas costas</strong> — compressão vertebral direta</li>
+          <li><strong>Good mornings</strong> — hiperextensão sob carga</li>
+          <li><strong>Remada curvada pesada</strong> — flexão lombar mantida sob carga</li>
+          <li><strong>Sit-ups / crunch com carga</strong> — flexão lombar repetida</li>
+          <li><strong>Rotações da coluna com carga</strong> — particularmente na escoliose</li>
+          <li><strong>Hiperextensões lombares</strong> — agrava lordose</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- IDADE - ADAPTAÇÕES -->
+  <div class="age-box mb-44">
+    <div class="box-title">Adaptações para Homem de 50 Anos</div>
+    <div class="age-grid">
+      <div class="age-item">
+        <h5>Aquecimento prolongado</h5>
+        <p>10 min obrigatórios antes de cada sessão. Articulações e tecido conjuntivo requerem mais tempo de ativação após os 50.</p>
+      </div>
+      <div class="age-item">
+        <h5>Descanso mais generoso</h5>
+        <p>3 min entre compostos pesados (vs. 2 min no protocolo jovem). Recuperação da fosfocreatina é mais lenta.</p>
+      </div>
+      <div class="age-item">
+        <h5>Volume conservador inicial</h5>
+        <p>Iniciar com o limite inferior de séries. Progressão mais gradual — 1 série extra a cada 3–4 semanas.</p>
+      </div>
+      <div class="age-item">
+        <h5>Faixas de reps mais altas</h5>
+        <p>Preferir 10–15 reps em vez de 6–8 em compostos. Menor stress articular com estímulo de hipertrofia equivalente.</p>
+      </div>
+      <div class="age-item">
+        <h5>Deload mais frequente</h5>
+        <p>A cada 4 semanas (vs. 5–6 no jovem). Recuperação sistémica é mais lenta e o risco de overreaching é maior.</p>
+      </div>
+      <div class="age-item">
+        <h5>Testosterona e sono</h5>
+        <p>Após os 50, testosterona livre declina. Sono 7–9h é crítico — impacto hormonal direto na síntese proteica.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCÍCIOS CONTRAINDICADOS (resumo) -->
+  <div class="forbidden-box mb-44">
+    <div class="fb-title">✕ Exercícios Eliminados Neste Programa (coluna + idade)</div>
+    <div class="forbidden-grid">
+      <div class="forb-item">Agachamento com barra nas costas (carga axial)</div>
+      <div class="forb-item">Peso morto convencional pesado</div>
+      <div class="forb-item">Remada curvada com barra</div>
+      <div class="forb-item">Good morning / hiperextensão</div>
+      <div class="forb-item">Crunch com carga / sit-up</div>
+      <div class="forb-item">Rotação de tronco sob carga</div>
+      <div class="forb-item">Overhead press com barra atrás do pescoço</div>
+      <div class="forb-item">Leg press com amplitude extrema (lombar eleva)</div>
+    </div>
+  </div>
+
+  <!-- ESTRUTURA SEMANA -->
+  <div class="week-section">
+    <div class="section-title">Estrutura Semanal <span class="section-tag">rotação A/B a cada 2 semanas</span></div>
+    <p class="section-desc">PPL mantido — mas com dias de descanso antes e depois das pernas para proteger a lombar.</p>
+
+    <div class="week-bar">
+      <div class="week-day a"><span class="wday">SEG</span><span class="wlabel">PUSH</span></div>
+      <div class="week-day"><span class="wday">TER</span><span class="wlabel">descanso</span></div>
+      <div class="week-day b"><span class="wday">QUA</span><span class="wlabel">PULL</span></div>
+      <div class="week-day"><span class="wday">QUI</span><span class="wlabel">descanso</span></div>
+      <div class="week-day c"><span class="wday">SEX</span><span class="wlabel">LEGS</span></div>
+      <div class="week-day"><span class="wday">SAB</span><span class="wlabel">mob./cardio</span></div>
+      <div class="week-day"><span class="wday">DOM</span><span class="wlabel">descanso</span></div>
+    </div>
+
+    <div class="schedule-note">
+      ▪ Sábado reservado para mobilidade e cardio leve (opcional) — não treino de força &nbsp;·&nbsp; ▪ Sexta-feira separada de Quarta para dar 48h à lombar antes de Legs
+    </div>
+  </div>
+
+  <!-- DIA A: PUSH -->
+  <div class="section-title mb-20">Dias de Treino</div>
+  <p class="section-desc">Descanso entre séries: <strong>2–3 min</strong> compostos · <strong>90 s</strong> isolamentos · Aquecimento: 10 min antes de cada sessão</p>
+
+  <div class="day-card mb-32">
+    <div class="day-header ha">
+      <div class="day-letter">A</div>
+      <div class="day-info">
+        <h3>PUSH — Peito · Ombros · Tríceps</h3>
+        <div class="day-meta">Segunda-feira · ~55 minutos (incl. aquecimento) · 11 séries</div>
+      </div>
+      <div class="day-right">
+        <div class="day-stat"><strong>11</strong>séries</div>
+      </div>
+    </div>
+    <table class="ex-table">
+      <thead>
+        <tr>
+          <th>Exercício</th>
+          <th>Músculo</th>
+          <th>Séries × Reps</th>
+          <th>RIR</th>
+          <th>Descanso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="ex-name">Supino Inclinado com Halteres (30–45°)</div>
+            <div class="ex-note">Banco com encosto ajustável. Amplitude controlada, sem hiperextender os ombros. Preferível à barra — permite rotação natural da articulação.</div>
+          </td>
+          <td><span class="mtag t-chest">Peito sup.</span></td>
+          <td><span class="sets-reps">3 × 10–12</span></td>
+          <td><span class="rir-b">RIR 2–3</span></td>
+          <td><span class="rest-b">2–3 min</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Supino Plano na Máquina (ou Crossover)</div>
+            <div class="ex-note">Máquina de supino estabiliza a coluna. Alternativa: cabo crossover em pé com ligeira inclinação do tronco — sem carga axial.</div>
+          </td>
+          <td><span class="mtag t-chest">Peito</span></td>
+          <td><span class="sets-reps">3 × 10–12</span></td>
+          <td><span class="rir-b">RIR 2–3</span></td>
+          <td><span class="rest-b">2–3 min</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Desenvolvimento com Halteres (sentado, banco vertical)</div>
+            <div class="ex-note">Banco reto (90°) com encosto — suporte lombar total. Cotovelos ligeiramente à frente do plano do corpo, não atrás. Amplitude moderada.</div>
+            <div class="ex-avoid">⚠ Evitar overhead press com barra (compressão discal + dificuldade de manter neutro lombar)</div>
+          </td>
+          <td><span class="mtag t-delt">Ombro</span></td>
+          <td><span class="sets-reps">3 × 10–12</span></td>
+          <td><span class="rir-b">RIR 2–3</span></td>
+          <td><span class="rest-b">2–3 min</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Elevação Lateral com Cabos (em pé)</div>
+            <div class="ex-note">Cabos mantêm tensão constante — mais eficazes que halteres. Carga leve, movimento controlado. Sem balanço do tronco.</div>
+          </td>
+          <td><span class="mtag t-delt">Deltóide lat.</span></td>
+          <td><span class="sets-reps">2 × 15–20</span></td>
+          <td><span class="rir-b">RIR 1–2</span></td>
+          <td><span class="rest-b">90 s</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Triceps Polia Alta — Corda (em pé)</div>
+            <div class="ex-note">Mantém postura ereta. Cotovelos fixos ao lado do corpo. Extensão total.</div>
+          </td>
+          <td><span class="mtag t-tric">Tríceps</span></td>
+          <td><span class="sets-reps">2 × 12–15</span></td>
+          <td><span class="rir-b">RIR 2</span></td>
+          <td><span class="rest-b">90 s</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DIA B: PULL -->
+  <div class="day-card mb-32">
+    <div class="day-header hb">
+      <div class="day-letter">B</div>
+      <div class="day-info">
+        <h3>PULL — Costas · Bíceps · Trapézio</h3>
+        <div class="day-meta">Quarta-feira · ~55 minutos (incl. aquecimento) · 12 séries</div>
+      </div>
+      <div class="day-right">
+        <div class="day-stat"><strong>12</strong>séries</div>
+      </div>
+    </div>
+    <table class="ex-table">
+      <thead>
+        <tr>
+          <th>Exercício</th>
+          <th>Músculo</th>
+          <th>Séries × Reps</th>
+          <th>RIR</th>
+          <th>Descanso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="ex-name">Puxada na Polia Alta — Pegada Neutra (paralela)</div>
+            <div class="ex-note">Pegada neutra reduz stress nas articulações do ombro. Escápulas para baixo antes de puxar. Tronco levemente inclinado, não arcado.</div>
+          </td>
+          <td><span class="mtag t-back">Dorsal</span></td>
+          <td><span class="sets-reps">3 × 10–12</span></td>
+          <td><span class="rir-b">RIR 2–3</span></td>
+          <td><span class="rest-b">2–3 min</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Remada na Máquina (assento com suporte peitoral)</div>
+            <div class="ex-note">O suporte peitoral elimina a necessidade de manter coluna rígida sob carga — essencial para lordose. Evita a remada curvada livre.</div>
+            <div class="ex-avoid">⚠ Substitui a remada curvada com barra (contraindicada: flexão lombar sustentada sob carga)</div>
+          </td>
+          <td><span class="mtag t-back">Costas esp.</span></td>
+          <td><span class="sets-reps">3 × 10–12</span></td>
+          <td><span class="rir-b">RIR 2–3</span></td>
+          <td><span class="rest-b">2–3 min</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Remada Unilateral com Halter (banco de apoio)</div>
+            <div class="ex-note">Joelho e mão no banco para suporte total da lombar. Exercícios unilaterais compensam assimetrias da escoliose — fazer série extra no lado mais fraco se necessário.</div>
+          </td>
+          <td><span class="mtag t-back">Dorsal / Rombóides</span></td>
+          <td><span class="sets-reps">2 × 10–12</span></td>
+          <td><span class="rir-b">RIR 2–3</span></td>
+          <td><span class="rest-b">2 min</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Rosca Direta com Barra EZ (sentado)</div>
+            <div class="ex-note">Sentado elimina compensação lombar. Barra EZ reduz stress no pulso e cotovelo vs. barra reta. Sem balanço do tronco.</div>
+          </td>
+          <td><span class="mtag t-bic">Bíceps</span></td>
+          <td><span class="sets-reps">3 × 10–12</span></td>
+          <td><span class="rir-b">RIR 2</span></td>
+          <td><span class="rest-b">90 s</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Encolhimento de Ombros com Halteres</div>
+            <div class="ex-note">Amplitude completa. Fase excêntrica controlada (2–3 s). Halteres permitem posição neutra das mãos — menos stress que barra.</div>
+          </td>
+          <td><span class="mtag t-back">Trapézio</span></td>
+          <td><span class="sets-reps">2 × 12–15</span></td>
+          <td><span class="rir-b">RIR 2</span></td>
+          <td><span class="rest-b">90 s</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DIA C: LEGS -->
+  <div class="day-card mb-32">
+    <div class="day-header hc">
+      <div class="day-letter">C</div>
+      <div class="day-info">
+        <h3>LEGS — Quadríceps · Posterior · Glúteos · Gémeos</h3>
+        <div class="day-meta">Sexta-feira · ~60 minutos (incl. aquecimento 12 min) · 14 séries</div>
+      </div>
+      <div class="day-right">
+        <div class="day-stat"><strong>14</strong>séries</div>
+      </div>
+    </div>
+    <table class="ex-table">
+      <thead>
+        <tr>
+          <th>Exercício</th>
+          <th>Músculo</th>
+          <th>Séries × Reps</th>
+          <th>RIR</th>
+          <th>Descanso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="ex-name">Leg Press 45° (amplitude controlada)</div>
+            <div class="ex-note">Amplitude até 90° — não além, para não elevar a lombar. Pés na posição média-alta. Costas sempre encostadas ao assento. Principal composto do dia.</div>
+            <div class="ex-avoid">⚠ Substitui o agachamento livre com barra (carga axial + compressão discal)</div>
+          </td>
+          <td><span class="mtag t-legs">Quadríceps</span><span class="mtag t-glutes">Glúteos</span></td>
+          <td><span class="sets-reps">4 × 10–12</span></td>
+          <td><span class="rir-b">RIR 2–3</span></td>
+          <td><span class="rest-b">3 min</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Cadeira Extensora</div>
+            <div class="ex-note">Isolamento do quadríceps. Costas encostadas. Evitar carga excessiva se houver dor patelar — reduzir amplitude nos últimos 10° de extensão se necessário.</div>
+          </td>
+          <td><span class="mtag t-legs">Quadríceps</span></td>
+          <td><span class="sets-reps">3 × 12–15</span></td>
+          <td><span class="rir-b">RIR 2</span></td>
+          <td><span class="rest-b">90 s</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Romanian Deadlift com Halteres (RDL)</div>
+            <div class="ex-note">Halteres em vez de barra — menor carga axial e melhor controlo. Manter coluna neutra em todos os momentos; nuca alinhada com a coluna. Movimento de quadril, não de lombar.</div>
+            <div class="ex-avoid">⚠ Técnica rigorosa obrigatória — parar se sentir dor lombar. Carga muito abaixo do limite — foco na técnica e no alongamento do isquiotibial.</div>
+          </td>
+          <td><span class="mtag t-legs">Posterior</span><span class="mtag t-glutes">Glúteos</span><span class="mtag t-erect">Eretores</span></td>
+          <td><span class="sets-reps">3 × 10–12</span></td>
+          <td><span class="rir-b">RIR 3</span></td>
+          <td><span class="rest-b">2–3 min</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Mesa Flexora (Leg Curl deitado ou sentado)</div>
+            <div class="ex-note">Alternativa à mesa: Leg Curl na polia baixa. Fase excêntrica controlada (2 s). Fortalece isquiotibiais que antagonizam a lordose anterior.</div>
+          </td>
+          <td><span class="mtag t-legs">Posterior</span></td>
+          <td><span class="sets-reps">3 × 12–15</span></td>
+          <td><span class="rir-b">RIR 2</span></td>
+          <td><span class="rest-b">90 s</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Elevação de Gémeos em Pé (máquina)</div>
+            <div class="ex-note">Usar máquina — melhor que suporte sobre steps para esta condição. Amplitude completa; pausa 1 s no topo.</div>
+          </td>
+          <td><span class="mtag t-calves">Gémeos</span></td>
+          <td><span class="sets-reps">3 × 15–20</span></td>
+          <td><span class="rir-b">RIR 1–2</span></td>
+          <td><span class="rest-b">60 s</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CORE ESPECIALIZADO -->
+  <div class="section-title mb-20">Core Especializado para Coluna <span class="section-tag">adicionar ao final do treino A e B · 8–10 min</span></div>
+  <p class="section-desc">O core adaptado substitui exercícios tradicionais de abdominais — foco em estabilização, não em flexão lombar.</p>
+
+  <div class="day-card mb-44">
+    <div class="day-header" style="border-top: 4px solid var(--accent2);">
+      <div class="day-letter" style="color: var(--accent2); font-size: 36px; padding-top: 8px;">CORE</div>
+      <div class="day-info">
+        <h3>Estabilização Espinal Anti-Rotação</h3>
+        <div class="day-meta">Após Push e Pull · 8–10 minutos · sem falha</div>
+      </div>
+    </div>
+    <table class="ex-table">
+      <thead>
+        <tr>
+          <th>Exercício</th>
+          <th>Função</th>
+          <th>Séries × Duração</th>
+          <th>Nota</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="ex-name">Prancha Frontal (Plank)</div>
+            <div class="ex-note">Anti-extensão. Coluna neutra. Não deixar cair a lombar.</div>
+          </td>
+          <td><span class="mtag t-core">Core ant.</span></td>
+          <td><span class="sets-reps">3 × 30–45 s</span></td>
+          <td><span class="rest-b">Progressão em tempo, não carga</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Prancha Lateral</div>
+            <div class="ex-note">Anti-flexão lateral — especialmente importante para escoliose. Fazer ambos os lados; o lado mais fraco pode precisar de série extra.</div>
+          </td>
+          <td><span class="mtag t-core">Core lat.</span></td>
+          <td><span class="sets-reps">3 × 20–30 s</span></td>
+          <td><span class="rest-b">Cada lado</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Dead Bug</div>
+            <div class="ex-note">Anti-extensão lombar com movimento de membros. Lombar sempre encostada ao chão. Excelente para lordose — ativa o transverso do abdómen sem carga na coluna.</div>
+          </td>
+          <td><span class="mtag t-core">Core prof.</span></td>
+          <td><span class="sets-reps">3 × 8–10 reps</span></td>
+          <td><span class="rest-b">Movimento lento e controlado</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ex-name">Pallof Press (polia)</div>
+            <div class="ex-note">Anti-rotação — diretamente relevante para escoliose. Em pé ou ajoelhado. Resistir à rotação, não criar movimento.</div>
+          </td>
+          <td><span class="mtag t-core">Anti-rotação</span></td>
+          <td><span class="sets-reps">2 × 10–12</span></td>
+          <td><span class="rest-b">Cada lado</span></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MOBILIDADE SÁBADO -->
+  <div class="section-title mb-20">Sábado — Mobilidade & Recuperação Ativa <span class="section-tag">20–30 min · opcional mas recomendado</span></div>
+
+  <div class="mob-card">
+    <h4>Sequência de Mobilidade Lombar e Quadril (prioridade lordose)</h4>
+    <ul>
+      <li><strong>Cat-Cow (10 reps lentas)</strong> — mobilização segmentar da coluna</li>
+      <li><strong>Child's Pose (60 s × 2)</strong> — descompressão lombar e alongamento do dorsal</li>
+      <li><strong>Hip Flexor Stretch em Lunging (60 s/lado)</strong> — reduz tensão anterior que acentua lordose</li>
+      <li><strong>Piriformis Stretch (60 s/lado)</strong> — liberta tensão na escoliose com componente pélvico</li>
+      <li><strong>Glute Bridge (2 × 15)</strong> — ativa glúteos sem carga espinal; corrige anteversão pélvica</li>
+      <li><strong>Thoracic Rotation em 4 apoios (10 reps/lado)</strong> — mobilidade torácica sem forçar lombar</li>
+    </ul>
+  </div>
+
+  <!-- CARDIO -->
+  <div class="section-title mb-20" style="margin-top: 44px;">Cardio <span class="section-tag">dias de descanso ou sábado · coluna adaptado</span></div>
+  <p class="section-desc">Modalidades de alto impacto (corrida, saltos) são desaconselhadas com lordose e escoliose — preferir baixo impacto.</p>
+
+  <div class="cardio-card">
+    <h4>Opção Prioritária — Bicicleta Estacionária ou Elíptica</h4>
+    <p>Baixo impacto espinal. A bicicleta de assento reclinado (recumbent bike) é a melhor opção — suporte lombar total durante o esforço cardiovascular.</p>
+    <ul>
+      <li><strong>Duração:</strong> 25–35 min, 2× semana</li>
+      <li><strong>Intensidade:</strong> FC 60–75% FC máx (~130–145 bpm para 50 anos) — zona aeróbia moderada</li>
+      <li><strong>Dias:</strong> Terça e/ou Sábado (não após Legs — 24h mínimo de separação)</li>
+    </ul>
+  </div>
+
+  <div class="cardio-card" style="margin-top: 14px;">
+    <h4>Opção Alternativa — Caminhada Inclinada (treadmill)</h4>
+    <p>Sem corrida. Inclinação 4–8% a 5–6 km/h. Impacto vertebral muito inferior à corrida. Excelente para saúde cardiovascular e metabolismo dos 50+.</p>
+    <ul>
+      <li><strong>Duração:</strong> 30 min, 1–2× semana</li>
+      <li><strong>Nota:</strong> Não segurar nos corrimões — afeta postura e reduz gasto calórico</li>
+    </ul>
+  </div>
+
+  <div class="alert-box" style="margin-top: 20px; margin-bottom: 44px;">
+    <strong>⚠ Evitar:</strong> Corrida, jumping jacks, rope skipping, HIIT de alta intensidade com saltos, remo ergométrico com má forma lombar — todos causam carga compressiva repetitiva na coluna que pode agravar lordose e escoliose.
+  </div>
+
+  <!-- PROTOCOLOS -->
+  <div class="section-title mb-20">Protocolos de Execução</div>
+
+  <div class="protocol-grid mb-44">
+    <div class="proto-card">
+      <h4>Aquecimento Obrigatório (10–12 min)</h4>
+      <p><strong>5 min:</strong> bicicleta ou elíptica baixa intensidade<br>
+      <strong>5 min:</strong> mobilização do dia (ombros, quadril, torácica) — ver sequência sábado adaptada ao grupo muscular do dia</p>
+    </div>
+    <div class="proto-card">
+      <h4>Progressão de Carga</h4>
+      <p><strong>Dupla progressão conservadora:</strong> atingir o limite superior das reps em 2 sessões consecutivas → aumentar 2.5 kg (não 5 kg como no jovem). Progressão mais lenta, mas consistente.</p>
+    </div>
+    <div class="proto-card">
+      <h4>RIR e Falha</h4>
+      <p>Nunca falha concêntrica. <strong>RIR 2–3</strong> é o alvo constante — permite recuperação adequada para a próxima sessão e protege os tecidos conjuntivos (tendões mais suscetíveis após 50).</p>
+    </div>
+    <div class="proto-card">
+      <h4>Rotação B (semanas 3–4)</h4>
+      <p><strong>Push B:</strong> Crossover · Dev. máquina · Dips assistida<br>
+      <strong>Pull B:</strong> Puxada aberta · Remada baixa polia · Rosca martelo<br>
+      <strong>Legs B:</strong> Agach. búlgaro (halter) · Leg Press pés altos · Cadeira flex.</p>
+    </div>
+    <div class="proto-card">
+      <h4>Nutrição 50+ Masculino</h4>
+      <p><strong>Proteína:</strong> 2.0–2.2 g/kg/dia em 4–5 refeições (~40g/refeição)<br>
+      <strong>Creatina:</strong> 3–5g/dia (evidência sólida para 50+, massa muscular e função cognitiva)<br>
+      <strong>Superávit calórico:</strong> +200 kcal/dia (conservative — menos gordura corporal acumulada)</p>
+    </div>
+    <div class="proto-card">
+      <h4>Deload (cada 4 semanas)</h4>
+      <p>Reduzir volume 40–50% <strong>e</strong> intensidade (RIR 5). Importante: incluir mobilidade extra na semana de deload. Para escoliose/lordose, semanas de deload têm valor terapêutico adicional.</p>
+    </div>
+  </div>
+
+  <!-- PROGRESSÃO 12 SEMANAS -->
+  <div class="section-title mb-20">Progressão — 12 Semanas</div>
+  <p class="section-desc">Estrutura conservadora com ciclos de 4 semanas — adaptada para 50 anos e condição da coluna.</p>
+
+  <table class="prog-table mb-44">
+    <thead>
+      <tr>
+        <th>Semana</th>
+        <th>Fase</th>
+        <th>Séries/músculo/sem.</th>
+        <th>RIR alvo</th>
+        <th>Foco especial</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1–2</td>
+        <td>Adaptação Técnica</td>
+        <td>8–10 séries</td>
+        <td>RIR 4–5</td>
+        <td>Dominar padrões de movimento; coluna neutra em todos os exercícios</td>
+      </tr>
+      <tr>
+        <td>3–4</td>
+        <td>Acumulação I</td>
+        <td>10–12 séries</td>
+        <td>RIR 3</td>
+        <td>Rotação B; primeiros aumentos de carga</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Deload I</td>
+        <td>5–6 séries</td>
+        <td>RIR 5</td>
+        <td>Mobilidade extra; avaliação de dores ou desconfortos</td>
+      </tr>
+      <tr>
+        <td>6–7</td>
+        <td>Acumulação II</td>
+        <td>11–13 séries</td>
+        <td>RIR 2–3</td>
+        <td>Progressão de carga consistente; adicionar 1 série em exercícios mais estáveis</td>
+      </tr>
+      <tr>
+        <td>8–9</td>
+        <td>Intensificação</td>
+        <td>12–14 séries</td>
+        <td>RIR 2</td>
+        <td>Pico de volume — monitorizar recuperação e sinais de overreaching</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>Deload II</td>
+        <td>5–6 séries</td>
+        <td>RIR 5</td>
+        <td>Revisão de simetrias musculares (escoliose); ajustes de exercícios</td>
+      </tr>
+      <tr>
+        <td>11–12</td>
+        <td>Consolidação</td>
+        <td>12–14 séries</td>
+        <td>RIR 2</td>
+        <td>Avaliação comparativa; planear bloco seguinte com base nos dados</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- AVISO FINAL -->
+  <div class="medical-alert">
+    <div class="alert-title">⚠ Nota de Precisão e Limitações</div>
+    <p>
+      Os princípios de hipertrofia aplicados (volume, frequência, RIR) têm forte base em meta-análises (Schoenfeld, Krieger, Steele). As adaptações para lordose e escoliose seguem guidelines gerais de fisioterapia e medicina desportiva — <strong>mas a severidade e tipo da curva de cada indivíduo determinam o que é ou não contraindicado.</strong> O ângulo de Cobb, a localização da curvatura, a presença de espondilolistese ou hérnia associada, e a história de dor são fatores que só uma avaliação clínica pode determinar. Este programa deve ser validado por um fisiatra ou fisioterapeuta antes de iniciar. <strong>Qualquer dor aguda durante o treino deve levar à suspensão imediata do exercício e consulta médica.</strong>
+    </p>
+  </div>
+
+  <footer>
+    <span>Protocolo adaptado · Lordose + Escoliose · 50 anos · Masculino</span>
+    <span>Não substitui avaliação médica especializada</span>
+  </footer>
+
+</div>
+</body>
+</html>
