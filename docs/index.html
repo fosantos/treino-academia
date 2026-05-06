@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
@@ -26,6 +26,27 @@
     --caution: #7a5c1a;
   }
 
+  /* ── DARK MODE VARIABLES ── */
+  [data-theme="dark"] {
+    --bg: #1a1410;
+    --bg2: #261e18;
+    --surface: #2d241d;
+    --surface2: #382d24;
+    --border: #4d3d2f;
+    --border2: #5c4a3a;
+    --ink: #f5f0e8;
+    --ink2: #ede7d9;
+    --muted: #a39485;
+    --accent: #d45d30;
+    --accent2: #4a8c6a;
+    --accent3: #4a7ab8;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
@@ -35,7 +56,489 @@
     font-size: 15px;
     line-height: 1.7;
     min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
   }
+
+  /* Dark mode toggle button */
+  .theme-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 18px;
+  }
+
+  .theme-toggle:hover {
+    background: var(--bg2);
+  }
+
+  /* ── EXERCISE NOTES ── */
+  .ex-notes-area {
+    margin-top: 16px;
+    padding: 0 12px;
+  }
+
+  .ex-notes-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ex-notes-label::before {
+    content: '✎';
+    font-size: 12px;
+  }
+
+  .ex-notes-input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    outline: none;
+    resize: none;
+    transition: border-color 0.2s;
+  }
+
+  .ex-notes-input:focus {
+    border-color: var(--accent);
+    background: var(--surface);
+  }
+
+  /* ── BODY MEASUREMENTS ── */
+  .measurements-box {
+    margin-top: 44px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+    border-radius: 2px;
+  }
+
+  .measure-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .measure-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .measure-input-group label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .measure-input {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 2px;
+    color: var(--ink);
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .measure-input:focus { border-color: var(--accent); }
+
+  .measure-history {
+    margin-top: 20px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    border-top: 1px solid var(--bg2);
+    padding-top: 12px;
+  }
+
+  .protein-target {
+    margin-top: 12px;
+    background: var(--bg2);
+    padding: 12px;
+    border-radius: 2px;
+    border-left: 3px solid var(--accent2);
+    display: none;
+  }
+
+  .protein-target.active { display: block; }
+
+  .protein-val {
+    font-weight: 700;
+    color: var(--accent2);
+    font-size: 14px;
+  }
+
+  /* ── PROGRESSION CALCULATOR ── */
+  .prog-calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .calc-grid {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .calc-input {
+    width: 80px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 8px;
+    color: var(--ink);
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    border-radius: 2px;
+  }
+
+  .calc-result {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .calc-res-val { color: var(--accent); font-weight: 700; }
+
+  /* ── SESSION COMMENT ── */
+  .session-comment-area {
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .session-comment-input {
+    width: 100%;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 10px;
+    color: var(--ink);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    resize: none;
+    outline: none;
+  }
+
+  .session-comment-input:focus { border-color: var(--accent); }
+
+  .history-comment {
+    display: block;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 4px;
+    font-size: 10px;
+  }
+
+  /* ── RPE RATING ── */
+  .week-tracker {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .week-btn {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 6px 0;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .week-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+
+  .week-btn.active.deload {
+    background: var(--accent2);
+    border-color: var(--accent2);
+  }
+
+  .phase-info {
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--ink);
+    padding: 10px;
+    background: var(--bg2);
+    border-radius: 2px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .phase-info.deload { border-left-color: var(--accent2); }
+
+  .phase-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ── HIGHLIGHTS ── */
+  .prog-table tr.active-week {
+    background: rgba(212,93,48,0.05);
+    border-left: 4px solid var(--accent);
+  }
+
+  .week-day.today {
+    border: 2px solid var(--accent);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 2;
+  }
+
+  /* ── PREP CHECKLIST ── */
+  .prep-checklist {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .prep-title {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .prep-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+
+  .prep-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink);
+  }
+
+  .prep-item input { accent-color: var(--accent2); }
+
+  /* ── RPE RATING ── */
+  .rpe-container {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .rpe-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .rpe-select {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    padding: 6px;
+    font-family: 'Source Code Pro', monospace;
+    border-radius: 2px;
+  }
+
+  /* ── SUMMARY MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal-content {
+    background: var(--surface);
+    border: 2px solid var(--accent2);
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+
+  .modal-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--accent2);
+    margin-bottom: 16px;
+  }
+
+  .modal-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 24px 0;
+    padding: 20px;
+    background: var(--surface2);
+    border-radius: 2px;
+  }
+
+  .stat-box .s-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    display: block;
+  }
+
+  .stat-box .s-lbl {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .btn-modal {
+    background: var(--accent2);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .btn-modal:hover { opacity: 0.9; }
+
+  .btn-copy {
+    background: var(--surface);
+    color: var(--accent2);
+    border: 1px solid var(--accent2);
+    margin-left: 10px;
+  }
+
+  .btn-copy:hover {
+    background: var(--bg2);
+  }
+
+  .safety-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff0f0;
+    color: #c0392b;
+    border: 1px solid #d4a0a0;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    margin-right: 6px;
+    font-weight: bold;
+    cursor: help;
+  }
+
+  /* ── HISTORY ── */
+  .history-section {
+    margin-top: 44px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+    border-radius: 2px;
+  }
+
+  .history-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--ink);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+  }
+
+  .history-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    padding: 8px 12px;
+    background: var(--bg2);
+    border-radius: 2px;
+  }
+
+  .btn-del-history {
+    background: transparent;
+    border: none;
+    color: #c0392b;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 4px;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+
+  .btn-del-history:hover { opacity: 1; }
+
+  .history-date { color: var(--ink); font-weight: 600; }
+  .history-meta { color: var(--muted); }
 
   /* Subtle paper texture */
   body::before {
@@ -758,6 +1261,223 @@
   .mb-32 { margin-bottom: 32px; }
   .mb-44 { margin-bottom: 44px; }
 
+  /* ── ACCORDION & IMAGES ── */
+  .controls-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .btn-control {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+
+  .btn-control:hover {
+    background: var(--bg2);
+    color: var(--ink);
+    border-color: var(--border2);
+  }
+
+  .btn-reset {
+    background: var(--surface);
+    color: var(--warn);
+    border-color: var(--warn);
+  }
+
+  .btn-reset:hover {
+    background: var(--warn);
+    color: white;
+  }
+
+  /* ── SEARCH BAR ── */
+  .search-container {
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 12px 16px 12px 44px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .search-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139,58,26,0.1);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    pointer-events: none;
+  }
+
+  /* ── CHECKBOXES ── */
+  .check-col {
+    width: 40px;
+    text-align: center !important;
+  }
+
+  .ex-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--accent);
+  }
+
+  .ex-row.completed td {
+    opacity: 0.6;
+    text-decoration: line-through;
+    text-decoration-color: var(--accent);
+  }
+
+  .ex-row.completed .ex-name::before {
+    content: '✓';
+    color: var(--accent2);
+  }
+
+  .ex-row { 
+    cursor: pointer; 
+    transition: background 0.2s, opacity 0.2s;
+  }
+  
+  .ex-row:hover td { 
+    background: var(--surface2) !important; 
+  }
+
+  .ex-row.active td {
+    background: var(--bg2) !important;
+    border-bottom: none;
+  }
+
+  .ex-details { 
+    display: none; 
+    background: var(--surface2);
+    overflow: hidden;
+  }
+
+  .ex-details.active { 
+    display: table-row; 
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .ex-details td {
+    padding: 0 16px 20px 16px !important;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ex-image-container {
+    background: #fff;
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .ex-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 2px;
+    display: block;
+  }
+
+  .ex-image-caption {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ex-name::before {
+    content: '⊕';
+    display: inline-block;
+    margin-right: 8px;
+    color: var(--accent);
+    font-size: 14px;
+    transition: transform 0.2s;
+  }
+
+  .ex-row.active .ex-name::before {
+    content: '⊖';
+    transform: rotate(180deg);
+  }
+
+  /* ── NAVIGATION ── */
+  .nav-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 32px;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  .nav-link {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    padding: 4px 8px;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+    background: var(--bg2);
+  }
+
+  @media print {
+    .nav-menu, .controls-bar, .btn-control, .medical-alert, footer { display: none !important; }
+    .ex-details { display: table-row !important; }
+    .ex-row { cursor: default !important; background: none !important; }
+    .ex-row::before { content: '' !important; }
+    .container { max-width: 100% !important; padding: 0 !important; }
+    body { background: white !important; }
+    .day-card { break-inside: avoid; border: 1px solid #eee !important; box-shadow: none !important; }
+    .ex-image-container { break-inside: avoid; border: none !important; padding: 5px !important; }
+  }
+
   @media (max-width: 600px) {
     .spine-grid { grid-template-columns: 1fr; }
     .day-right { display: none; }
@@ -784,6 +1504,18 @@
       <span class="chip">10–14 séries/músculo/semana</span>
     </div>
   </header>
+
+  <!-- NAVEGAÇÃO RÁPIDA -->
+  <nav class="nav-menu">
+    <a href="#dia-a" class="nav-link">Push (A)</a>
+    <a href="#dia-b" class="nav-link">Pull (B)</a>
+    <a href="#dia-c" class="nav-link">Legs (C)</a>
+    <a href="#dia-core" class="nav-link">Core</a>
+    <a href="#dia-mob" class="nav-link">Mobilidade</a>
+    <a href="#dia-cardio" class="nav-link">Cardio</a>
+    <a href="#measurements" class="nav-link">Medidas</a>
+    <a href="#history" class="nav-link">Histórico</a>
+  </nav>
 
   <!-- AVISO MÉDICO -->
   <div class="medical-alert">
@@ -918,7 +1650,32 @@
   <div class="section-title mb-20">Dias de Treino</div>
   <p class="section-desc">Descanso entre séries: <strong>2–3 min</strong> compostos · <strong>90 s</strong> isolamentos · Aquecimento: 10 min antes de cada sessão</p>
 
-  <div class="day-card mb-32">
+  <div class="search-container">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-input" id="exercise-search" placeholder="Procurar exercício ou músculo (ex: Peito, Dorsal, Plank)...">
+  </div>
+
+  <div class="prep-checklist">
+    <span class="prep-title">Checklist Pré-Treino:</span>
+    <div class="prep-grid">
+      <label class="prep-item"><input type="checkbox"> Hidratação ok</label>
+      <label class="prep-item"><input type="checkbox"> Aquecimento 10m</label>
+      <label class="prep-item"><input type="checkbox"> Sem dores agudas</label>
+      <label class="prep-item"><input type="checkbox"> Foco na coluna neutra</label>
+    </div>
+  </div>
+
+  <div class="controls-bar">
+    <button class="btn-control" id="expand-all">Expandir Tudo</button>
+    <button class="btn-control" id="collapse-all">Recolher Tudo</button>
+    <button class="btn-control" onclick="window.print()">Imprimir PDF</button>
+    <button class="btn-control" id="export-data">Exportar Backup</button>
+    <button class="btn-control" id="import-trigger">Importar Backup</button>
+    <input type="file" id="import-data" style="display: none;" accept=".json">
+    <button class="btn-control btn-reset" id="reset-session">Limpar Progresso</button>
+  </div>
+
+  <div class="day-card mb-32" id="dia-a">
     <div class="day-header ha">
       <div class="day-letter">A</div>
       <div class="day-info">
@@ -932,6 +1689,7 @@
     <table class="ex-table">
       <thead>
         <tr>
+          <th class="check-col"></th>
           <th>Exercício</th>
           <th>Músculo</th>
           <th>Séries × Reps</th>
@@ -940,7 +1698,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Supino Inclinado com Halteres (30–45°)</div>
             <div class="ex-note">Banco com encosto ajustável. Amplitude controlada, sem hiperextender os ombros. Preferível à barra — permite rotação natural da articulação.</div>
@@ -950,7 +1709,20 @@
           <td><span class="rir-b">RIR 2–3</span></td>
           <td><span class="rest-b">2–3 min</span></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif" alt="Supino Inclinado com Halteres">
+              <div class="ex-image-caption">Exemplo: Banco a 30–45°, halteres descendo de forma controlada até a linha do peito.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: 18kg cada lado, banco posição 3...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Supino Plano na Máquina (ou Crossover)</div>
             <div class="ex-note">Máquina de supino estabiliza a coluna. Alternativa: cabo crossover em pé com ligeira inclinação do tronco — sem carga axial.</div>
@@ -960,9 +1732,22 @@
           <td><span class="rir-b">RIR 2–3</span></td>
           <td><span class="rest-b">2–3 min</span></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://fitnessprogramer.com/wp-content/uploads/2021/02/Lever-Chest-Press.gif" alt="Supino Plano na Máquina">
+              <div class="ex-image-caption">Exemplo: Ajuste o banco para que as pegadas fiquem na altura do mamilo.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
-            <div class="ex-name">Desenvolvimento com Halteres (sentado, banco vertical)</div>
+            <div class="ex-name"><span class="safety-tag" title="Adaptação de Segurança">!</span>Desenvolvimento com Halteres (sentado, banco vertical)</div>
             <div class="ex-note">Banco reto (90°) com encosto — suporte lombar total. Cotovelos ligeiramente à frente do plano do corpo, não atrás. Amplitude moderada.</div>
             <div class="ex-avoid">⚠ Evitar overhead press com barra (compressão discal + dificuldade de manter neutro lombar)</div>
           </td>
@@ -971,7 +1756,20 @@
           <td><span class="rir-b">RIR 2–3</span></td>
           <td><span class="rest-b">2–3 min</span></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://treinoemalta.com.br/wp-content/uploads/2023/07/Desenvolvimento-com-Halteres-H.gif" alt="Desenvolvimento com Halteres">
+              <div class="ex-image-caption">Exemplo: Encosto total da lombar, halteres sobem sem esticar totalmente os cotovelos.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Elevação Lateral com Cabos (em pé)</div>
             <div class="ex-note">Cabos mantêm tensão constante — mais eficazes que halteres. Carga leve, movimento controlado. Sem balanço do tronco.</div>
@@ -981,7 +1779,20 @@
           <td><span class="rir-b">RIR 1–2</span></td>
           <td><span class="rest-b">90 s</span></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://treinoemalta.com.br/wp-content/uploads/2023/07/Elevacao-Unilateral-na-Polia.gif" alt="Elevação Lateral com Cabos">
+              <div class="ex-image-caption">Exemplo: Puxe o cabo por trás do corpo ou pela frente, mantendo o braço quase reto.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Triceps Polia Alta — Corda (em pé)</div>
             <div class="ex-note">Mantém postura ereta. Cotovelos fixos ao lado do corpo. Extensão total.</div>
@@ -991,12 +1802,24 @@
           <td><span class="rir-b">RIR 2</span></td>
           <td><span class="rest-b">90 s</span></td>
         </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://treinoemalta.com.br/wp-content/uploads/2023/07/Triceps-Pulley-Corda.gif" alt="Triceps Polia Alta">
+              <div class="ex-image-caption">Exemplo: Afaste as pontas da corda no final do movimento para contração máxima.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
 
   <!-- DIA B: PULL -->
-  <div class="day-card mb-32">
+  <div class="day-card mb-32" id="dia-b">
     <div class="day-header hb">
       <div class="day-letter">B</div>
       <div class="day-info">
@@ -1010,6 +1833,7 @@
     <table class="ex-table">
       <thead>
         <tr>
+          <th class="check-col"></th>
           <th>Exercício</th>
           <th>Músculo</th>
           <th>Séries × Reps</th>
@@ -1018,7 +1842,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Puxada na Polia Alta — Pegada Neutra (paralela)</div>
             <div class="ex-note">Pegada neutra reduz stress nas articulações do ombro. Escápulas para baixo antes de puxar. Tronco levemente inclinado, não arcado.</div>
@@ -1028,9 +1853,22 @@
           <td><span class="rir-b">RIR 2–3</span></td>
           <td><span class="rest-b">2–3 min</span></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://treinoemalta.com.br/wp-content/uploads/2023/07/Puxada-Alta.gif" alt="Puxada na Polia Alta">
+              <div class="ex-image-caption">Exemplo: Puxe a barra em direção ao peito superior, mantendo o tronco estável.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
-            <div class="ex-name">Remada na Máquina (assento com suporte peitoral)</div>
+            <div class="ex-name"><span class="safety-tag" title="Adaptação de Segurança">!</span>Remada na Máquina (assento com suporte peitoral)</div>
             <div class="ex-note">O suporte peitoral elimina a necessidade de manter coluna rígida sob carga — essencial para lordose. Evita a remada curvada livre.</div>
             <div class="ex-avoid">⚠ Substitui a remada curvada com barra (contraindicada: flexão lombar sustentada sob carga)</div>
           </td>
@@ -1039,7 +1877,20 @@
           <td><span class="rir-b">RIR 2–3</span></td>
           <td><span class="rest-b">2–3 min</span></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://image.tuasaude.com/media/article/dm/wv/remada_75622.gif" alt="Remada na Máquina">
+              <div class="ex-image-caption">Exemplo: Peito encostado no suporte, puxe as alças em direção ao abdómen.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Remada Unilateral com Halter (banco de apoio)</div>
             <div class="ex-note">Joelho e mão no banco para suporte total da lombar. Exercícios unilaterais compensam assimetrias da escoliose — fazer série extra no lado mais fraco se necessário.</div>
@@ -1049,7 +1900,20 @@
           <td><span class="rir-b">RIR 2–3</span></td>
           <td><span class="rest-b">2 min</span></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Row.gif" alt="Remada Unilateral com Halter">
+              <div class="ex-image-caption">Exemplo: Mantenha as costas paralelas ao chão e puxe o halter até a cintura.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Rosca Direta com Barra EZ (sentado)</div>
             <div class="ex-note">Sentado elimina compensação lombar. Barra EZ reduz stress no pulso e cotovelo vs. barra reta. Sem balanço do tronco.</div>
@@ -1059,7 +1923,20 @@
           <td><span class="rir-b">RIR 2</span></td>
           <td><span class="rest-b">90 s</span></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/rosca-biceps-direta-na-barra-ez.gif" alt="Rosca Direta com Barra EZ">
+              <div class="ex-image-caption">Exemplo: Sentado no banco com encosto, mova apenas os antebraços.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Encolhimento de Ombros com Halteres</div>
             <div class="ex-note">Amplitude completa. Fase excêntrica controlada (2–3 s). Halteres permitem posição neutra das mãos — menos stress que barra.</div>
@@ -1069,12 +1946,24 @@
           <td><span class="rir-b">RIR 2</span></td>
           <td><span class="rest-b">90 s</span></td>
         </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://treinoemalta.com.br/wp-content/uploads/2023/07/Encolhimento-de-ombros-com-halteres.gif" alt="Encolhimento de Ombros com Halteres">
+              <div class="ex-image-caption">Exemplo: Eleve os ombros em direção às orelhas sem girar as articulações.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
 
   <!-- DIA C: LEGS -->
-  <div class="day-card mb-32">
+  <div class="day-card mb-32" id="dia-c">
     <div class="day-header hc">
       <div class="day-letter">C</div>
       <div class="day-info">
@@ -1088,6 +1977,7 @@
     <table class="ex-table">
       <thead>
         <tr>
+          <th class="check-col"></th>
           <th>Exercício</th>
           <th>Músculo</th>
           <th>Séries × Reps</th>
@@ -1096,9 +1986,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
-            <div class="ex-name">Leg Press 45° (amplitude controlada)</div>
+            <div class="ex-name"><span class="safety-tag" title="Adaptação de Segurança">!</span>Leg Press 45° (amplitude controlada)</div>
             <div class="ex-note">Amplitude até 90° — não além, para não elevar a lombar. Pés na posição média-alta. Costas sempre encostadas ao assento. Principal composto do dia.</div>
             <div class="ex-avoid">⚠ Substitui o agachamento livre com barra (carga axial + compressão discal)</div>
           </td>
@@ -1107,7 +1998,20 @@
           <td><span class="rir-b">RIR 2–3</span></td>
           <td><span class="rest-b">3 min</span></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://treinoemalta.com.br/wp-content/uploads/2023/07/Leg-press-45%c2%b0.gif" alt="Leg Press 45°">
+              <div class="ex-image-caption">Exemplo: Mantenha a lombar firme no encosto; não desça a plataforma demais.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Cadeira Extensora</div>
             <div class="ex-note">Isolamento do quadríceps. Costas encostadas. Evitar carga excessiva se houver dor patelar — reduzir amplitude nos últimos 10° de extensão se necessário.</div>
@@ -1117,9 +2021,22 @@
           <td><span class="rir-b">RIR 2</span></td>
           <td><span class="rest-b">90 s</span></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://image.tuasaude.com/media/article/ov/fb/cadeira-extensora_75064.gif" alt="Cadeira Extensora">
+              <div class="ex-image-caption">Exemplo: Ajuste o rolo para ficar logo acima dos tornozelos.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
-            <div class="ex-name">Romanian Deadlift com Halteres (RDL)</div>
+            <div class="ex-name"><span class="safety-tag" title="Adaptação de Segurança">!</span>Romanian Deadlift com Halteres (RDL)</div>
             <div class="ex-note">Halteres em vez de barra — menor carga axial e melhor controlo. Manter coluna neutra em todos os momentos; nuca alinhada com a coluna. Movimento de quadril, não de lombar.</div>
             <div class="ex-avoid">⚠ Técnica rigorosa obrigatória — parar se sentir dor lombar. Carga muito abaixo do limite — foco na técnica e no alongamento do isquiotibial.</div>
           </td>
@@ -1128,7 +2045,20 @@
           <td><span class="rir-b">RIR 3</span></td>
           <td><span class="rest-b">2–3 min</span></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://burnfit.io/en/wp-content/uploads/sites/3/2026/01/DB_RM_DL.gif" alt="Romanian Deadlift com Halteres">
+              <div class="ex-image-caption">Exemplo: Desça os halteres rente às pernas, empurrando o quadril para trás.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Mesa Flexora (Leg Curl deitado ou sentado)</div>
             <div class="ex-note">Alternativa à mesa: Leg Curl na polia baixa. Fase excêntrica controlada (2 s). Fortalece isquiotibiais que antagonizam a lordose anterior.</div>
@@ -1138,15 +2068,86 @@
           <td><span class="rir-b">RIR 2</span></td>
           <td><span class="rest-b">90 s</span></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://treinoemalta.com.br/wp-content/uploads/2023/07/Mesa-Flexora.gif" alt="Mesa Flexora">
+              <div class="ex-image-caption">Exemplo: Mantenha o quadril colado no banco durante a flexão das pernas.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
-            <div class="ex-name">Elevação de Gémeos em Pé (máquina)</div>
-            <div class="ex-note">Usar máquina — melhor que suporte sobre steps para esta condição. Amplitude completa; pausa 1 s no topo.</div>
+            <div class="ex-name">Panturrilha Sentado (na máquina)</div>
+            <div class="ex-note">Sentado remove carga axial da coluna. Amplitude máxima no topo e na base. Pausa de 1s no alongamento.</div>
           </td>
           <td><span class="mtag t-calves">Gémeos</span></td>
           <td><span class="sets-reps">3 × 15–20</span></td>
           <td><span class="rir-b">RIR 1–2</span></td>
           <td><span class="rest-b">60 s</span></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://treinoemalta.com.br/wp-content/uploads/2023/07/sentado.gif" alt="Panturrilha Sentado">
+              <div class="ex-image-caption">Exemplo: Suba na ponta dos pés de forma controlada.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
+          <td>
+            <div class="ex-name">Elevação Pélvica (banco ou máquina)</div>
+            <div class="ex-note">Essencial para lordose (fortalece cadeia posterior). Queixo no peito, foco em "esmagar" os glúteos no topo. Não hiperextender a lombar.</div>
+          </td>
+          <td><span class="mtag t-glutes">Glúteos</span></td>
+          <td><span class="sets-reps">3 × 12–15</span></td>
+          <td><span class="rir-b">RIR 1–2</span></td>
+          <td><span class="rest-b">2 min</span></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://treinoemalta.com.br/wp-content/uploads/2023/07/Elevacao-Pelvica.gif" alt="Elevação Pélvica">
+              <div class="ex-image-caption">Exemplo: Eleve o quadril até alinhar com os joelhos e ombros.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
+          <td>
+            <div class="ex-name">Agachamento Sumô com Halter</div>
+            <div class="ex-note">Pés afastados, pontas para fora. Segura halter entre as pernas (carga vertical, sem compressão). Coluna ereta.</div>
+          </td>
+          <td><span class="mtag t-legs">Quadríceps / Adutores</span></td>
+          <td><span class="sets-reps">2 × 12–15</span></td>
+          <td><span class="rir-b">RIR 2</span></td>
+          <td><span class="rest-b">2 min</span></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://treinoemalta.com.br/wp-content/uploads/2023/07/Agachamento-sumor-com-Halter.gif" alt="Agachamento Sumô">
+              <div class="ex-image-caption">Exemplo: Desça com as costas retas, focando no trabalho dos membros inferiores.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -1156,7 +2157,7 @@
   <div class="section-title mb-20">Core Especializado para Coluna <span class="section-tag">adicionar ao final do treino A e B · 8–10 min</span></div>
   <p class="section-desc">O core adaptado substitui exercícios tradicionais de abdominais — foco em estabilização, não em flexão lombar.</p>
 
-  <div class="day-card mb-44">
+  <div class="day-card mb-44" id="dia-core">
     <div class="day-header" style="border-top: 4px solid var(--accent2);">
       <div class="day-letter" style="color: var(--accent2); font-size: 36px; padding-top: 8px;">CORE</div>
       <div class="day-info">
@@ -1167,6 +2168,7 @@
     <table class="ex-table">
       <thead>
         <tr>
+          <th class="check-col"></th>
           <th>Exercício</th>
           <th>Função</th>
           <th>Séries × Duração</th>
@@ -1175,7 +2177,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Prancha Frontal (Plank)</div>
             <div class="ex-note">Anti-extensão. Coluna neutra. Não deixar cair a lombar.</div>
@@ -1185,7 +2188,20 @@
           <td><span class="rest-b">Progressão em tempo, não carga</span></td>
           <td></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/ede7d9/1a1410?text=Prancha+Frontal" alt="Prancha Frontal">
+              <div class="ex-image-caption">Exemplo: Mantenha o corpo em linha reta; contraia glúteos e abdómen.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Prancha Lateral</div>
             <div class="ex-note">Anti-flexão lateral — especialmente importante para escoliose. Fazer ambos os lados; o lado mais fraco pode precisar de série extra.</div>
@@ -1195,17 +2211,43 @@
           <td><span class="rest-b">Cada lado</span></td>
           <td></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/ede7d9/1a1410?text=Prancha+Lateral" alt="Prancha Lateral">
+              <div class="ex-image-caption">Exemplo: Cotovelo alinhado com o ombro; quadril elevado.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Dead Bug</div>
-            <div class="ex-note">Anti-extensão lombar com movimento de membros. Lombar sempre encostada ao chão. Excelente para lordose — ativa o transverso do abdómen sem carga na coluna.</div>
+            <div class="ex-note">Anti-extensão lombar with movimento de membros. Lombar sempre encostada ao chão. Excelente para lordose — ativa o transverso do abdómen sem carga na coluna.</div>
           </td>
           <td><span class="mtag t-core">Core prof.</span></td>
           <td><span class="sets-reps">3 × 8–10 reps</span></td>
           <td><span class="rest-b">Movimento lento e controlado</span></td>
           <td></td>
         </tr>
-        <tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/ede7d9/1a1410?text=Dead+Bug" alt="Dead Bug">
+              <div class="ex-image-caption">Exemplo: Braço e perna opostos descem simultaneamente enquanto a lombar pressiona o chão.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
           <td>
             <div class="ex-name">Pallof Press (polia)</div>
             <div class="ex-note">Anti-rotação — diretamente relevante para escoliose. Em pé ou ajoelhado. Resistir à rotação, não criar movimento.</div>
@@ -1215,6 +2257,41 @@
           <td><span class="rest-b">Cada lado</span></td>
           <td></td>
         </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/ede7d9/1a1410?text=Pallof+Press" alt="Pallof Press">
+              <div class="ex-image-caption">Exemplo: Estenda os braços à frente do peito e resista à puxeada lateral do cabo.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
+          <td>
+            <div class="ex-name">Abdominal Supra na Polia Alta (ajoelhado)</div>
+            <div class="ex-note">Foco na flexão da coluna torácica, mantendo a lombar estável. Excelente para isolamento do reto abdominal sem sobrecarga excessiva.</div>
+          </td>
+          <td><span class="mtag t-core">Reto abd.</span></td>
+          <td><span class="sets-reps">3 × 12–15</span></td>
+          <td><span class="rest-b">90 s</span></td>
+          <td></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://treinoemalta.com.br/wp-content/uploads/2023/07/Abdominal-Supra-com-Corda-na-Polia-Alta.gif" alt="Abdominal Supra na Polia">
+              <div class="ex-image-caption">Exemplo: Contraia o abdómen para puxar o peso, evitando usar os braços ou o quadril.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -1222,39 +2299,263 @@
   <!-- MOBILIDADE SÁBADO -->
   <div class="section-title mb-20">Sábado — Mobilidade & Recuperação Ativa <span class="section-tag">20–30 min · opcional mas recomendado</span></div>
 
-  <div class="mob-card">
-    <h4>Sequência de Mobilidade Lombar e Quadril (prioridade lordose)</h4>
-    <ul>
-      <li><strong>Cat-Cow (10 reps lentas)</strong> — mobilização segmentar da coluna</li>
-      <li><strong>Child's Pose (60 s × 2)</strong> — descompressão lombar e alongamento do dorsal</li>
-      <li><strong>Hip Flexor Stretch em Lunging (60 s/lado)</strong> — reduz tensão anterior que acentua lordose</li>
-      <li><strong>Piriformis Stretch (60 s/lado)</strong> — liberta tensão na escoliose com componente pélvico</li>
-      <li><strong>Glute Bridge (2 × 15)</strong> — ativa glúteos sem carga espinal; corrige anteversão pélvica</li>
-      <li><strong>Thoracic Rotation em 4 apoios (10 reps/lado)</strong> — mobilidade torácica sem forçar lombar</li>
-    </ul>
+  <div class="day-card mb-44" id="dia-mob">
+    <div class="day-header" style="border-top: 4px solid var(--accent2);">
+      <div class="day-letter" style="color: var(--accent2); font-size: 36px; padding-top: 8px;">MOB</div>
+      <div class="day-info">
+        <h3>Mobilidade Lombar e Quadril</h3>
+        <div class="day-meta">Foco em descompressão e correção da lordose · 6 exercícios</div>
+      </div>
+    </div>
+    <table class="ex-table">
+      <thead>
+        <tr>
+          <th class="check-col"></th>
+          <th>Exercício</th>
+          <th>Objetivo</th>
+          <th>Volume</th>
+          <th>Nota</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
+          <td>
+            <div class="ex-name">Cat-Cow</div>
+            <div class="ex-note">Mobilização segmentar da coluna em 4 apoios.</div>
+          </td>
+          <td><span class="mtag t-core">Coluna</span></td>
+          <td><span class="sets-reps">10 reps lentas</span></td>
+          <td><span class="rest-b">Foco no controle</span></td>
+          <td></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/f0f7f4/1a1410?text=Cat+Cow" alt="Cat-Cow">
+              <div class="ex-image-caption">Exemplo: Alterne entre arquear e arredondar as costas suavemente.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
+          <td>
+            <div class="ex-name">Child's Pose (Postura da Criança)</div>
+            <div class="ex-note">Descompressão lombar e alongamento do dorsal.</div>
+          </td>
+          <td><span class="mtag t-back">Lombar</span></td>
+          <td><span class="sets-reps">2 × 60 s</span></td>
+          <td><span class="rest-b">Respire profundamente</span></td>
+          <td></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/f0f7f4/1a1410?text=Childs+Pose" alt="Child's Pose">
+              <div class="ex-image-caption">Exemplo: Sente-se nos calcanhares e estenda os braços à frente.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
+          <td>
+            <div class="ex-name">Alongamento Flexor de Quadril</div>
+            <div class="ex-note">Reduz tensão anterior que acentua a lordose.</div>
+          </td>
+          <td><span class="mtag t-legs">Psoas / Iliaco</span></td>
+          <td><span class="sets-reps">60 s por lado</span></td>
+          <td><span class="rest-b">Sem arquear a lombar</span></td>
+          <td></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/f0f7f4/1a1410?text=Hip+Flexor+Stretch" alt="Alongamento Flexor de Quadril">
+              <div class="ex-image-caption">Exemplo: Posição de afundo, empurrando o quadril levemente à frente.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
+          <td>
+            <div class="ex-name">Alongamento de Piriforme</div>
+            <div class="ex-note">Liberta tensão na escoliose com componente pélvico.</div>
+          </td>
+          <td><span class="mtag t-glutes">Glúteo prof.</span></td>
+          <td><span class="sets-reps">60 s por lado</span></td>
+          <td><span class="rest-b">Sinta o alongamento no glúteo</span></td>
+          <td></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/f0f7f4/1a1410?text=Piriformis+Stretch" alt="Alongamento de Piriforme">
+              <div class="ex-image-caption">Exemplo: Deitado, cruze uma perna sobre a outra e puxe em direção ao peito.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
+          <td>
+            <div class="ex-name">Glute Bridge (Ponte de Glúteo)</div>
+            <div class="ex-note">Ativa glúteos sem carga espinal; corrige anteversão pélvica.</div>
+          </td>
+          <td><span class="mtag t-glutes">Glúteo / Core</span></td>
+          <td><span class="sets-reps">2 × 15 reps</span></td>
+          <td><span class="rest-b">Pausa 1s no topo</span></td>
+          <td></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/f0f7f4/1a1410?text=Glute+Bridge" alt="Glute Bridge">
+              <div class="ex-image-caption">Exemplo: Eleve o quadril mantendo os pés firmes e abdómen contraído.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
+          <td>
+            <div class="ex-name">Rotação Torácica em 4 Apoios</div>
+            <div class="ex-note">Mobilidade torácica sem forçar a lombar.</div>
+          </td>
+          <td><span class="mtag t-back">Torácica</span></td>
+          <td><span class="sets-reps">10 reps por lado</span></td>
+          <td><span class="rest-b">Acompanhe com o olhar</span></td>
+          <td></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/f0f7f4/1a1410?text=Thoracic+Rotation" alt="Rotação Torácica">
+              <div class="ex-image-caption">Exemplo: Mão na nuca, leve o cotovelo para cima e depois para o braço oposto.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <!-- CARDIO -->
   <div class="section-title mb-20" style="margin-top: 44px;">Cardio <span class="section-tag">dias de descanso ou sábado · coluna adaptado</span></div>
   <p class="section-desc">Modalidades de alto impacto (corrida, saltos) são desaconselhadas com lordose e escoliose — preferir baixo impacto.</p>
 
-  <div class="cardio-card">
-    <h4>Opção Prioritária — Bicicleta Estacionária ou Elíptica</h4>
-    <p>Baixo impacto espinal. A bicicleta de assento reclinado (recumbent bike) é a melhor opção — suporte lombar total durante o esforço cardiovascular.</p>
-    <ul>
-      <li><strong>Duração:</strong> 25–35 min, 2× semana</li>
-      <li><strong>Intensidade:</strong> FC 60–75% FC máx (~130–145 bpm para 50 anos) — zona aeróbia moderada</li>
-      <li><strong>Dias:</strong> Terça e/ou Sábado (não após Legs — 24h mínimo de separação)</li>
-    </ul>
-  </div>
-
-  <div class="cardio-card" style="margin-top: 14px;">
-    <h4>Opção Alternativa — Caminhada Inclinada (treadmill)</h4>
-    <p>Sem corrida. Inclinação 4–8% a 5–6 km/h. Impacto vertebral muito inferior à corrida. Excelente para saúde cardiovascular e metabolismo dos 50+.</p>
-    <ul>
-      <li><strong>Duração:</strong> 30 min, 1–2× semana</li>
-      <li><strong>Nota:</strong> Não segurar nos corrimões — afeta postura e reduz gasto calórico</li>
-    </ul>
+  <div class="day-card mb-44" id="dia-cardio">
+    <div class="day-header" style="border-top: 4px solid var(--accent3);">
+      <div class="day-letter" style="color: var(--accent3); font-size: 36px; padding-top: 8px;">HR</div>
+      <div class="day-info">
+        <h3>Cardiovascular de Baixo Impacto</h3>
+        <div class="day-meta">Foco em saúde metabólica e suporte espinal · 2 opções</div>
+      </div>
+    </div>
+    <table class="ex-table">
+      <thead>
+        <tr>
+          <th class="check-col"></th>
+          <th>Modalidade</th>
+          <th>Benefício</th>
+          <th>Duração/Int.</th>
+          <th>Frequência</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
+          <td>
+            <div class="ex-name">Bicicleta Estacionária (Reclinada)</div>
+            <div class="ex-note">Suporte lombar total. A melhor opção para lordose e escoliose.</div>
+          </td>
+          <td><span class="mtag t-calves">Metabólico</span></td>
+          <td><span class="sets-reps">25–35 min / Z2</span></td>
+          <td><span class="rest-b">2× por semana</span></td>
+          <td></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/f0f4f7/1a1410?text=Bicicleta+Reclinada" alt="Bicicleta Reclinada">
+              <div class="ex-image-caption">Exemplo: Ajuste o banco para que a lombar fique totalmente apoiada no encosto.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
+          <td>
+            <div class="ex-name">Elíptica (Transversal)</div>
+            <div class="ex-note">Sem impacto nas articulações. Mantém postura ereta.</div>
+          </td>
+          <td><span class="mtag t-legs">Cardio</span></td>
+          <td><span class="sets-reps">25–35 min / Z2</span></td>
+          <td><span class="rest-b">Opção alternativa</span></td>
+          <td></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/f0f4f7/1a1410?text=Eliptica" alt="Elíptica">
+              <div class="ex-image-caption">Exemplo: Mantenha as mãos nas alças fixas se precisar de mais estabilidade lombar.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+        <tr class="ex-row">
+          <td class="check-col"><input type="checkbox" class="ex-checkbox"></td>
+          <td>
+            <div class="ex-name">Caminhada Inclinada (Passadeira)</div>
+            <div class="ex-note">Inclinação 4–8% a 5–6 km/h. Sem corrida.</div>
+          </td>
+          <td><span class="mtag t-legs">Hormonal</span></td>
+          <td><span class="sets-reps">30 min / Incl. 6%</span></td>
+          <td><span class="rest-b">1–2× por semana</span></td>
+          <td></td>
+        </tr>
+        <tr class="ex-details">
+          <td colspan="6">
+            <div class="ex-image-container">
+              <img src="https://placehold.co/600x350/f0f4f7/1a1410?text=Caminhada+Inclinada" alt="Caminhada Inclinada">
+              <div class="ex-image-caption">Exemplo: Não segure nos corrimões; mantenha o tronco levemente inclinado à frente.</div>
+            </div>
+            <div class="ex-notes-area">
+              <label class="ex-notes-label">Notas Pessoais (Cargas, Máquina, Sensações)</label>
+              <input type="text" class="ex-notes-input" placeholder="Ex: Carga, regulagem da máquina, observações...">
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="alert-box" style="margin-top: 20px; margin-bottom: 44px;">
@@ -1311,49 +2612,49 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr data-weeks="1,2">
         <td>1–2</td>
         <td>Adaptação Técnica</td>
         <td>8–10 séries</td>
         <td>RIR 4–5</td>
         <td>Dominar padrões de movimento; coluna neutra em todos os exercícios</td>
       </tr>
-      <tr>
+      <tr data-weeks="3,4">
         <td>3–4</td>
         <td>Acumulação I</td>
         <td>10–12 séries</td>
         <td>RIR 3</td>
         <td>Rotação B; primeiros aumentos de carga</td>
       </tr>
-      <tr>
+      <tr data-weeks="5">
         <td>5</td>
         <td>Deload I</td>
         <td>5–6 séries</td>
         <td>RIR 5</td>
         <td>Mobilidade extra; avaliação de dores ou desconfortos</td>
       </tr>
-      <tr>
+      <tr data-weeks="6,7">
         <td>6–7</td>
         <td>Acumulação II</td>
         <td>11–13 séries</td>
         <td>RIR 2–3</td>
         <td>Progressão de carga consistente; adicionar 1 série em exercícios mais estáveis</td>
       </tr>
-      <tr>
+      <tr data-weeks="8,9">
         <td>8–9</td>
         <td>Intensificação</td>
         <td>12–14 séries</td>
         <td>RIR 2</td>
         <td>Pico de volume — monitorizar recuperação e sinais de overreaching</td>
       </tr>
-      <tr>
+      <tr data-weeks="10">
         <td>10</td>
         <td>Deload II</td>
         <td>5–6 séries</td>
         <td>RIR 5</td>
         <td>Revisão de simetrias musculares (escoliose); ajustes de exercícios</td>
       </tr>
-      <tr>
+      <tr data-weeks="11,12">
         <td>11–12</td>
         <td>Consolidação</td>
         <td>12–14 séries</td>
@@ -1371,11 +2672,306 @@
     </p>
   </div>
 
+  <!-- MEDIDAS CORPORAIS -->
+  <div class="measurements-box mb-44" id="measurements">
+    <div class="box-title" style="margin-bottom: 0; color: var(--ink);">Rastreio de Composição Corporal</div>
+    <p class="section-desc">Monitore peso e cintura para avaliar saúde metabólica e progresso estético.</p>
+    
+    <div class="measure-grid">
+      <div class="measure-input-group">
+        <label>Peso (kg)</label>
+        <input type="number" step="0.1" class="measure-input" id="weight-input" placeholder="00.0">
+      </div>
+      <div class="measure-input-group">
+        <label>Cintura (cm)</label>
+        <input type="number" step="0.1" class="measure-input" id="waist-input" placeholder="00.0">
+      </div>
+    </div>
+    <button class="btn-control" style="margin-top: 16px; width: 100%;" id="save-measures">Salvar Medidas de Hoje</button>
+
+    <div class="protein-target" id="protein-target-box">
+      <span class="s-lbl" style="font-size: 8px;">Meta de Proteína Recomendada (2.0–2.2g/kg):</span>
+      <div class="protein-val" id="protein-target-val">--g - --g / dia</div>
+    </div>
+
+    <div class="measure-history" id="measure-history">
+      <strong>Último registro:</strong> <span id="last-measure-text">Nenhum registro ainda.</span>
+    </div>
+  </div>
+
+  <!-- HISTÓRICO -->
+  <div class="history-section mb-44" id="history">
+    <div class="history-title">Histórico de Sessões Recentes</div>
+    <ul class="history-list" id="history-list">
+      <li class="history-item"><span class="history-meta">Nenhuma sessão registrada ainda.</span></li>
+    </ul>
+  </div>
+
   <footer>
     <span>Protocolo adaptado · Lordose + Escoliose · 50 anos · Masculino</span>
+    <span id="last-updated">Atualizado em: --/--/----</span>
     <span>Não substitui avaliação médica especializada</span>
   </footer>
 
 </div>
+
+<button class="theme-toggle" id="theme-toggle" title="Alternar Tema">🌓</button>
+
+<div class="modal-overlay" id="summary-modal">
+  <div class="modal-content">
+    <h2>Treino Concluído!</h2>
+    <p>Excelente trabalho. A constância é a chave para a longevidade e hipertrofia aos 50+.</p>
+    <div class="rpe-container">
+      <span class="rpe-label">Intensidade Esforço (RPE 1-10):</span>
+      <select class="rpe-select" id="summary-rpe">
+        <option value="5">5 - Leve</option>
+        <option value="6">6 - Moderado</option>
+        <option value="7">7 - Firme</option>
+        <option value="8" selected>8 - Intenso (Alvo)</option>
+        <option value="9">9 - Muito Intenso</option>
+        <option value="10">10 - Falha Total</option>
+      </select>
+    </div>
+    <div style="margin-top: 24px;">
+      <button class="btn-modal" id="finish-workout">Finalizar e Salvar</button>
+      <button class="btn-modal btn-copy" id="copy-summary">Copiar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const rows = document.querySelectorAll('.ex-row');
+    const expandAllBtn = document.getElementById('expand-all');
+    const collapseAllBtn = document.getElementById('collapse-all');
+    const resetSessionBtn = document.getElementById('reset-session');
+    const exportDataBtn = document.getElementById('export-data');
+    const importTriggerBtn = document.getElementById('import-trigger');
+    const importDataInput = document.getElementById('import-data');
+    const themeToggle = document.getElementById('theme-toggle');
+
+    const weightInput = document.getElementById('weight-input');
+    const waistInput = document.getElementById('waist-input');
+    const saveMeasuresBtn = document.getElementById('save-measures');
+    const lastMeasureText = document.getElementById('last-measure-text');
+    const proteinBox = document.getElementById('protein-target-box');
+    const proteinVal = document.getElementById('protein-target-val');
+
+    const searchInput = document.getElementById('exercise-search');
+    const summaryModal = document.getElementById('summary-modal');
+    const summaryRpe = document.getElementById('summary-rpe');
+    const finishWorkoutBtn = document.getElementById('finish-workout');
+    const copySummaryBtn = document.getElementById('copy-summary');
+    const historyList = document.getElementById('history-list');
+
+    // Toggle Tema
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      });
+    }
+
+    // Carregar estado
+    const loadExerciseData = () => {
+      const completed = JSON.parse(localStorage.getItem('completedExercises') || '{}');
+      const notes = JSON.parse(localStorage.getItem('exerciseNotes') || '{}');
+      rows.forEach(row => {
+        const nameNode = row.querySelector('.ex-name');
+        if (!nameNode) return;
+        const name = nameNode.textContent.trim();
+        const checkbox = row.querySelector('.ex-checkbox');
+        if (completed[name]) {
+          checkbox.checked = true;
+          row.classList.add('completed');
+        }
+        const details = row.nextElementSibling;
+        if (details && details.classList.contains('ex-details')) {
+          const notesInput = details.querySelector('.ex-notes-input');
+          if (notesInput && notes[name]) notesInput.value = notes[name];
+        }
+      });
+    };
+
+    const saveCheckbox = (name, isChecked) => {
+      const completed = JSON.parse(localStorage.getItem('completedExercises') || '{}');
+      if (isChecked) completed[name] = true; else delete completed[name];
+      localStorage.setItem('completedExercises', JSON.stringify(completed));
+    };
+
+    const saveNote = (name, note) => {
+      const notes = JSON.parse(localStorage.getItem('exerciseNotes') || '{}');
+      notes[name] = note;
+      localStorage.setItem('exerciseNotes', JSON.stringify(notes));
+    };
+
+    loadExerciseData();
+
+    // Medidas
+    const loadMeasures = () => {
+      const last = JSON.parse(localStorage.getItem('lastMeasurement') || 'null');
+      if (last) {
+        if (lastMeasureText) lastMeasureText.textContent = `${last.date}: ${last.weight}kg / ${last.waist}cm`;
+        if (weightInput) weightInput.value = last.weight;
+        if (waistInput) waistInput.value = last.waist;
+        if (last.weight > 0) {
+          proteinVal.textContent = `${(last.weight * 2.0).toFixed(0)}g - ${(last.weight * 2.2).toFixed(0)}g / dia`;
+          proteinBox.classList.add('active');
+        }
+      }
+    };
+
+    if (saveMeasuresBtn) {
+      saveMeasuresBtn.addEventListener('click', () => {
+        const entry = { date: new Date().toLocaleDateString('pt-BR'), weight: weightInput.value, waist: waistInput.value, timestamp: Date.now() };
+        localStorage.setItem('lastMeasurement', JSON.stringify(entry));
+        alert('Medidas salvas!');
+        loadMeasures();
+      });
+    }
+    loadMeasures();
+
+    // Histórico
+    const renderHistory = () => {
+      if (!historyList) return;
+      const history = JSON.parse(localStorage.getItem('workoutHistory') || '[]');
+      if (history.length === 0) {
+        historyList.innerHTML = '<li class="history-item"><span class="history-meta">Nenhuma sessão registrada.</span></li>';
+        return;
+      }
+      historyList.innerHTML = history.map((h, index) => `
+        <li class="history-item">
+          <div><span class="history-date">${h.date}</span> <span class="history-meta">${h.count} exerc. · RPE ${h.rpe}</span></div>
+          <button class="btn-del-history" onclick="deleteHistoryEntry(${index})">×</button>
+        </li>
+      `).join('');
+    };
+
+    window.deleteHistoryEntry = (index) => {
+      if (confirm('Excluir registro?')) {
+        const history = JSON.parse(localStorage.getItem('workoutHistory') || '[]');
+        history.splice(index, 1);
+        localStorage.setItem('workoutHistory', JSON.stringify(history));
+        renderHistory();
+      }
+    };
+    renderHistory();
+
+    // Toggle Acordeão
+    const toggleRow = (row, forceState) => {
+      const details = row.nextElementSibling;
+      if (details && details.classList.contains('ex-details')) {
+        if (forceState === 'expand') { row.classList.add('active'); details.classList.add('active'); }
+        else if (forceState === 'collapse') { row.classList.remove('active'); details.classList.remove('active'); }
+        else { row.classList.toggle('active'); details.classList.toggle('active'); }
+      }
+    };
+
+    rows.forEach(row => {
+      const checkbox = row.querySelector('.ex-checkbox');
+      const name = row.querySelector('.ex-name').textContent.trim();
+      const details = row.nextElementSibling;
+      const notesInput = details ? details.querySelector('.ex-notes-input') : null;
+      row.addEventListener('click', (e) => { if (e.target !== checkbox) toggleRow(row); });
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          row.classList.add('completed');
+          const checkedCount = Array.from(document.querySelectorAll('.ex-checkbox')).filter(cb => cb.checked).length;
+          if (checkedCount === rows.length && summaryModal) summaryModal.classList.add('active');
+        } else row.classList.remove('completed');
+        saveCheckbox(name, checkbox.checked);
+      });
+      if (notesInput) {
+        notesInput.addEventListener('input', () => saveNote(name, notesInput.value));
+        notesInput.addEventListener('click', (e) => e.stopPropagation());
+      }
+    });
+
+    if (expandAllBtn) expandAllBtn.addEventListener('click', () => rows.forEach(row => toggleRow(row, 'expand')));
+    if (collapseAllBtn) collapseAllBtn.addEventListener('click', () => rows.forEach(row => toggleRow(row, 'collapse')));
+    if (resetSessionBtn) {
+      resetSessionBtn.addEventListener('click', () => {
+        if (confirm('Limpar progresso?')) {
+          localStorage.removeItem('completedExercises');
+          rows.forEach(row => { row.classList.remove('completed'); row.querySelector('.ex-checkbox').checked = false; });
+        }
+      });
+    }
+
+    if (finishWorkoutBtn) {
+      finishWorkoutBtn.addEventListener('click', () => {
+        const checked = Array.from(document.querySelectorAll('.ex-checkbox')).filter(cb => cb.checked).length;
+        const history = JSON.parse(localStorage.getItem('workoutHistory') || '[]');
+        history.unshift({ date: new Date().toLocaleDateString('pt-BR'), count: checked, rpe: summaryRpe.value, timestamp: Date.now() });
+        if (history.length > 5) history.pop();
+        localStorage.setItem('workoutHistory', JSON.stringify(history));
+        summaryModal.classList.remove('active');
+        renderHistory();
+      });
+    }
+
+    if (copySummaryBtn) {
+      copySummaryBtn.addEventListener('click', () => {
+        const checked = Array.from(document.querySelectorAll('.ex-checkbox')).filter(cb => cb.checked).length;
+        const text = `🏆 Treino Concluído! 📊 Exercícios: ${checked}`;
+        if (navigator.share) navigator.share({ title: 'Resumo', text: text });
+        else navigator.clipboard.writeText(text);
+      });
+    }
+
+    // Pesquisa
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        rows.forEach(row => {
+          const isMatch = row.textContent.toLowerCase().includes(term);
+          row.style.display = isMatch ? 'table-row' : 'none';
+          const details = row.nextElementSibling;
+          if (details && details.classList.contains('ex-details')) details.style.display = (isMatch && details.classList.contains('active')) ? 'table-row' : 'none';
+        });
+        document.querySelectorAll('.day-card').forEach(card => {
+          const visibleRows = Array.from(card.querySelectorAll('.ex-row')).filter(r => r.style.display !== 'none');
+          card.style.display = visibleRows.length > 0 ? 'block' : 'none';
+        });
+      });
+    }
+
+    if (exportDataBtn) {
+      exportDataBtn.addEventListener('click', () => {
+        const data = { completed: JSON.parse(localStorage.getItem('completedExercises')), notes: JSON.parse(localStorage.getItem('exerciseNotes')), history: JSON.parse(localStorage.getItem('workoutHistory')), measures: JSON.parse(localStorage.getItem('lastMeasurement')), theme: localStorage.getItem('theme') };
+        const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'backup_treino.json'; a.click();
+      });
+    }
+
+    if (importTriggerBtn) importTriggerBtn.addEventListener('click', () => importDataInput.click());
+    if (importDataInput) {
+      importDataInput.addEventListener('change', (e) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const data = JSON.parse(event.target.result);
+          localStorage.setItem('completedExercises', JSON.stringify(data.completed || {}));
+          localStorage.setItem('exerciseNotes', JSON.stringify(data.notes || {}));
+          localStorage.setItem('workoutHistory', JSON.stringify(data.history || []));
+          localStorage.setItem('lastMeasurement', JSON.stringify(data.measures || null));
+          localStorage.setItem('theme', data.theme || 'light');
+          window.location.reload();
+        };
+        reader.readAsText(e.target.files[0]);
+      });
+    }
+
+    const lastUpdated = document.getElementById('last-updated');
+    if (lastUpdated) lastUpdated.textContent = `Atualizado em: ${new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}`;
+    
+    const days = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
+    const todayLabel = days[new Date().getDay()];
+    document.querySelectorAll('.week-day').forEach(el => { if (el.querySelector('.wday')?.textContent === todayLabel) el.classList.add('today'); });
+  });
+</script>
+
 </body>
 </html>
