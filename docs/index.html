@@ -1366,7 +1366,44 @@
       height: 44px;
       font-size: 18px;
     }
-    
+
+    /* ── WEEK BAR: force 7 equal cells to fit narrow screens ── */
+    .week-bar {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 4px;
+    }
+
+    .week-day {
+      padding: 10px 2px;
+      border-radius: 6px;
+    }
+
+    .week-day .wday {
+      font-size: 9.5px;
+      margin-bottom: 3px;
+    }
+
+    .week-day .wlabel {
+      font-size: 8px;
+      overflow-wrap: break-word;
+    }
+
+    .week-day.today {
+      transform: none; /* scale would clip against screen edge */
+    }
+
+    /* ── PROGRESSION TABLE: scroll horizontally inside its own block ── */
+    .prog-table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .prog-table th,
+    .prog-table td {
+      padding: 10px 12px;
+    }
+
     /* ── TABLE-TO-CARDS RESPONSIVE REFACTORING ── */
     .ex-table thead {
       display: none; /* Hide table headers */
