@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Programa de hipertrofia para homens 50+, adaptado para lordose lumbar e escoliose: treino Push/Pull/Legs, core anti-rotação, mobilidade e cardio de baixo impacto.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
 <title>Programa Hipertrofia · 50 anos · Coluna Adaptada</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -315,12 +317,6 @@
   .nav-link:hover {
     color: var(--accent);
     background: rgba(163, 70, 31, 0.05);
-  }
-
-  .nav-link.active-day {
-    color: var(--accent);
-    background: rgba(163, 70, 31, 0.08);
-    font-weight: 600;
   }
 
   /* ── ADAPTATIONS BOXES ── */
@@ -897,10 +893,6 @@
   .t-calves { color: #36649c; border-color: rgba(54,100,156,0.3); background: rgba(54,100,156,0.02); }
   .t-erect { color: #806c24; border-color: rgba(128,108,36,0.3); background: rgba(128,108,36,0.02); }
 
-  .caution-row td {
-    background: rgba(163, 70, 31, 0.015) !important;
-  }
-
   /* Checkbox formatting */
   .check-col {
     width: 44px;
@@ -1008,8 +1000,8 @@
     box-shadow: 0 0 0 3px rgba(163, 70, 31, 0.08);
   }
 
-  /* ── MOBILITY CARDIO & OTHER WIDGETS ── */
-  .mob-card, .cardio-card, .proto-card {
+  /* ── PROTOCOL CARDS ── */
+  .proto-card {
     background: var(--surface);
     border: 1px solid var(--border);
     padding: 24px;
@@ -1019,12 +1011,12 @@
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .mob-card:hover, .cardio-card:hover, .proto-card:hover {
+  .proto-card:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
   }
 
-  .mob-card h4, .proto-card h4 {
+  .proto-card h4 {
     font-family: 'Source Code Pro', monospace;
     font-size: 11px;
     letter-spacing: 0.15em;
@@ -1035,253 +1027,13 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .cardio-card h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 19px;
-    font-weight: 700;
-    color: var(--accent3);
-    margin-bottom: 12px;
-  }
-
-  .mob-card p, .mob-card li, .cardio-card p, .cardio-card li, .proto-card p {
+  .proto-card p {
     font-size: 14px;
     color: var(--muted);
     line-height: 1.7;
   }
 
-  .mob-card ul, .cardio-card ul { padding-left: 20px; margin-top: 10px; }
-  .mob-card li strong, .cardio-card li strong, .proto-card p strong { color: var(--ink2); }
-
-  /* ── PROGRESSION CALCULATOR / WEEK TRACKER ── */
-  .prog-calc, .week-tracker, .measurements-box, .history-section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 28px;
-    border-radius: 8px;
-    margin-bottom: 32px;
-    box-shadow: var(--shadow-md);
-  }
-
-  .measurements-box h3, .history-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--ink);
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 10px;
-  }
-
-  .measure-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-top: 20px;
-  }
-
-  .measure-input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .measure-input-group label {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 600;
-  }
-
-  .measure-input {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    padding: 12px 14px;
-    border-radius: 6px;
-    color: var(--ink);
-    font-family: 'Source Code Pro', monospace;
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.2s, background-color 0.2s;
-  }
-
-  .measure-input:focus { 
-    border-color: var(--accent); 
-    background: var(--surface);
-  }
-
-  .btn-save-measures {
-    margin-top: 16px;
-  }
-
-  .measure-history {
-    margin-top: 24px;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 12px;
-    color: var(--muted);
-    border-top: 1px solid var(--border);
-    padding-top: 16px;
-  }
-
-  .protein-target {
-    margin-top: 16px;
-    background: rgba(36, 99, 59, 0.03);
-    padding: 16px;
-    border-radius: 6px;
-    border-left: 4px solid var(--accent2);
-    display: none;
-    animation: fadeIn 0.3s ease-out;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  .protein-target.active { display: block; }
-
-  .protein-val {
-    font-weight: 700;
-    color: var(--accent2);
-    font-size: 16px;
-  }
-
-  /* PROGRESSION CALCULATOR */
-  .calc-grid {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-top: 14px;
-    flex-wrap: wrap;
-  }
-
-  .calc-input {
-    width: 100px;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    padding: 10px 14px;
-    color: var(--ink);
-    font-family: 'Source Code Pro', monospace;
-    font-size: 15px;
-    border-radius: 6px;
-    outline: none;
-    transition: border-color 0.2s, background-color 0.2s;
-  }
-
-  .calc-input:focus {
-    border-color: var(--accent);
-    background: var(--surface);
-  }
-
-  .calc-result {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 12.5px;
-    color: var(--muted);
-  }
-
-  .calc-res-val { color: var(--accent); font-weight: 700; }
-
-  /* WEEK TRACKER (PHASES) */
-  .week-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 8px;
-    margin-top: 14px;
-  }
-
-  .week-btn {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 11px;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: 10px 0;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .week-btn:hover {
-    background: var(--border);
-    color: var(--ink);
-  }
-
-  .week-btn.active {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-    box-shadow: var(--shadow-md);
-  }
-
-  .week-btn.active.deload {
-    background: var(--accent2);
-    border-color: var(--accent2);
-  }
-
-  .phase-info {
-    margin-top: 16px;
-    font-size: 13.5px;
-    color: var(--ink);
-    padding: 14px;
-    background: var(--bg2);
-    border-radius: 6px;
-    border-left: 4px solid var(--accent);
-    line-height: 1.6;
-    animation: slideDown 0.2s ease-out;
-  }
-
-  .phase-info.deload { border-left-color: var(--accent2); }
-
-  .phase-label {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    color: var(--muted);
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 700;
-  }
-
-  /* ── HISTÓRICO ── */
-  .history-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .history-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 12px;
-    padding: 12px 18px;
-    background: var(--bg2);
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    transition: background-color 0.2s;
-  }
-
-  .history-item:hover {
-    background: var(--surface2);
-  }
-
-  .btn-del-history {
-    background: transparent;
-    border: none;
-    color: var(--warn);
-    cursor: pointer;
-    font-size: 18px;
-    padding: 0 6px;
-    opacity: 0.6;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-
-  .btn-del-history:hover { opacity: 1; transform: scale(1.2); }
-  .history-date { color: var(--ink); font-weight: 600; }
-  .history-meta { color: var(--muted); }
+  .proto-card p strong { color: var(--ink2); }
 
   /* ── RPE RATING IN WORKOUT SUMMARY ── */
   .rpe-container {
@@ -1356,32 +1108,6 @@
     font-size: 30px;
     color: var(--accent2);
     margin-bottom: 12px;
-  }
-
-  .modal-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin: 24px 0;
-    padding: 20px;
-    background: var(--bg2);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-  }
-
-  .stat-box .s-val {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--ink);
-    display: block;
-  }
-
-  .stat-box .s-lbl {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    color: var(--muted);
   }
 
   .btn-modal {
@@ -1506,11 +1232,6 @@
   .prog-table td:nth-child(2) {
     color: var(--accent);
     font-weight: 600;
-  }
-
-  .prog-table tr.active-week {
-    background: rgba(163, 70, 31, 0.03);
-    border-left: 4px solid var(--accent);
   }
 
   /* ── FOOTER ── */
@@ -1759,18 +1480,7 @@
       margin-top: 14px;
       padding: 10px;
     }
-    
-    /* Custom spacing for widgets on mobile */
-    .measure-grid {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-    
-    .week-grid {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
-    
+
     .controls-bar {
       justify-content: center;
     }
@@ -1810,8 +1520,6 @@
     <a href="#dia-core" class="nav-link"><span class="nav-icon">🛡</span><span class="nav-text">Core</span></a>
     <a href="#dia-mob" class="nav-link"><span class="nav-icon">🔄</span><span class="nav-text">Mobilidade</span></a>
     <a href="#dia-cardio" class="nav-link"><span class="nav-icon">🫀</span><span class="nav-text">Cardio</span></a>
-    <a href="#measurements" class="nav-link"><span class="nav-icon">📏</span><span class="nav-text">Medidas</span></a>
-    <a href="#history" class="nav-link"><span class="nav-icon">🕒</span><span class="nav-text">Histórico</span></a>
   </nav>
 
   <!-- AVISO MÉDICO -->
@@ -3012,19 +2720,12 @@
     const importDataInput = document.getElementById('import-data');
     const themeToggle = document.getElementById('theme-toggle');
 
-    const weightInput = document.getElementById('weight-input');
-    const waistInput = document.getElementById('waist-input');
-    const saveMeasuresBtn = document.getElementById('save-measures');
-    const lastMeasureText = document.getElementById('last-measure-text');
-    const proteinBox = document.getElementById('protein-target-box');
-    const proteinVal = document.getElementById('protein-target-val');
-
     const searchInput = document.getElementById('exercise-search');
     const summaryModal = document.getElementById('summary-modal');
     const summaryRpe = document.getElementById('summary-rpe');
     const finishWorkoutBtn = document.getElementById('finish-workout');
     const copySummaryBtn = document.getElementById('copy-summary');
-    const historyList = document.getElementById('history-list');
+    let completedDayCard = null;
 
     // Toggle Tema
     const currentTheme = localStorage.getItem('theme') || 'light';
@@ -3072,56 +2773,6 @@
 
     loadExerciseData();
 
-    // Medidas
-    const loadMeasures = () => {
-      const last = JSON.parse(localStorage.getItem('lastMeasurement') || 'null');
-      if (last) {
-        if (lastMeasureText) lastMeasureText.textContent = `${last.date}: ${last.weight}kg / ${last.waist}cm`;
-        if (weightInput) weightInput.value = last.weight;
-        if (waistInput) waistInput.value = last.waist;
-        if (last.weight > 0) {
-          proteinVal.textContent = `${(last.weight * 2.0).toFixed(0)}g - ${(last.weight * 2.2).toFixed(0)}g / dia`;
-          proteinBox.classList.add('active');
-        }
-      }
-    };
-
-    if (saveMeasuresBtn) {
-      saveMeasuresBtn.addEventListener('click', () => {
-        const entry = { date: new Date().toLocaleDateString('pt-BR'), weight: weightInput.value, waist: waistInput.value, timestamp: Date.now() };
-        localStorage.setItem('lastMeasurement', JSON.stringify(entry));
-        alert('Medidas salvas!');
-        loadMeasures();
-      });
-    }
-    loadMeasures();
-
-    // Histórico
-    const renderHistory = () => {
-      if (!historyList) return;
-      const history = JSON.parse(localStorage.getItem('workoutHistory') || '[]');
-      if (history.length === 0) {
-        historyList.innerHTML = '<li class="history-item"><span class="history-meta">Nenhuma sessão registrada.</span></li>';
-        return;
-      }
-      historyList.innerHTML = history.map((h, index) => `
-        <li class="history-item">
-          <div><span class="history-date">${h.date}</span> <span class="history-meta">${h.count} exerc. · RPE ${h.rpe}</span></div>
-          <button class="btn-del-history" onclick="deleteHistoryEntry(${index})">×</button>
-        </li>
-      `).join('');
-    };
-
-    window.deleteHistoryEntry = (index) => {
-      if (confirm('Excluir registro?')) {
-        const history = JSON.parse(localStorage.getItem('workoutHistory') || '[]');
-        history.splice(index, 1);
-        localStorage.setItem('workoutHistory', JSON.stringify(history));
-        renderHistory();
-      }
-    };
-    renderHistory();
-
     // Toggle Acordeão
     const toggleRow = (row, forceState) => {
       const details = row.nextElementSibling;
@@ -3141,8 +2792,12 @@
       checkbox.addEventListener('change', () => {
         if (checkbox.checked) {
           row.classList.add('completed');
-          const checkedCount = Array.from(document.querySelectorAll('.ex-checkbox')).filter(cb => cb.checked).length;
-          if (checkedCount === rows.length && summaryModal) summaryModal.classList.add('active');
+          const card = row.closest('.day-card');
+          const cardBoxes = card ? Array.from(card.querySelectorAll('.ex-checkbox')) : [checkbox];
+          if (cardBoxes.every(cb => cb.checked) && summaryModal) {
+            completedDayCard = card;
+            summaryModal.classList.add('active');
+          }
         } else row.classList.remove('completed');
         saveCheckbox(name, checkbox.checked);
       });
@@ -3165,20 +2820,26 @@
 
     if (finishWorkoutBtn) {
       finishWorkoutBtn.addEventListener('click', () => {
-        const checked = Array.from(document.querySelectorAll('.ex-checkbox')).filter(cb => cb.checked).length;
+        const dayName = completedDayCard ? (completedDayCard.querySelector('.day-info h3')?.textContent || 'Treino') : 'Treino';
+        const dayCount = completedDayCard
+          ? Array.from(completedDayCard.querySelectorAll('.ex-checkbox')).filter(cb => cb.checked).length
+          : Array.from(document.querySelectorAll('.ex-checkbox')).filter(cb => cb.checked).length;
         const history = JSON.parse(localStorage.getItem('workoutHistory') || '[]');
-        history.unshift({ date: new Date().toLocaleDateString('pt-BR'), count: checked, rpe: summaryRpe.value, timestamp: Date.now() });
+        history.unshift({ date: new Date().toLocaleDateString('pt-BR'), day: dayName, count: dayCount, rpe: summaryRpe.value, timestamp: Date.now() });
         if (history.length > 5) history.pop();
         localStorage.setItem('workoutHistory', JSON.stringify(history));
+        completedDayCard = null;
         summaryModal.classList.remove('active');
-        renderHistory();
       });
     }
 
     if (copySummaryBtn) {
       copySummaryBtn.addEventListener('click', () => {
-        const checked = Array.from(document.querySelectorAll('.ex-checkbox')).filter(cb => cb.checked).length;
-        const text = `🏆 Treino Concluído! 📊 Exercícios: ${checked}`;
+        const dayName = completedDayCard ? (completedDayCard.querySelector('.day-info h3')?.textContent || 'Treino') : 'Treino';
+        const dayCount = completedDayCard
+          ? Array.from(completedDayCard.querySelectorAll('.ex-checkbox')).filter(cb => cb.checked).length
+          : Array.from(document.querySelectorAll('.ex-checkbox')).filter(cb => cb.checked).length;
+        const text = `🏆 Treino Concluído — ${dayName}! 📊 Exercícios: ${dayCount}`;
         if (navigator.share) navigator.share({ title: 'Resumo', text: text });
         else navigator.clipboard.writeText(text);
       });
