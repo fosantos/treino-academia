@@ -541,13 +541,6 @@
   .week-day.b { border-color: var(--day-b); color: var(--day-b); background: rgba(36, 99, 59, 0.03); }
   .week-day.c { border-color: var(--day-c); color: var(--day-c); background: rgba(26, 79, 124, 0.03); }
 
-  .week-day.today {
-    border: 2px solid var(--accent);
-    transform: scale(1.05);
-    box-shadow: var(--shadow-md);
-    z-index: 2;
-  }
-
   .schedule-note {
     font-family: 'Source Code Pro', monospace;
     font-size: 12px;
@@ -1413,10 +1406,6 @@
     .week-day .wlabel {
       font-size: 8px;
       overflow-wrap: break-word;
-    }
-
-    .week-day.today {
-      transform: none; /* scale would clip against screen edge */
     }
 
     /* ── PROGRESSION TABLE: scroll horizontally inside its own block ── */
@@ -2975,10 +2964,6 @@
 
     const lastUpdated = document.getElementById('last-updated');
     if (lastUpdated) lastUpdated.textContent = `Atualizado em: ${new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}`;
-    
-    const days = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
-    const todayLabel = days[new Date().getDay()];
-    document.querySelectorAll('.week-day').forEach(el => { if (el.querySelector('.wday')?.textContent === todayLabel) el.classList.add('today'); });
   });
 </script>
 
